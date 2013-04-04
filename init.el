@@ -106,6 +106,11 @@
       (load "icon-mode-defs" nil t)))
 
 
+; identica
+
+  (require 'identica nil 'noerror)
+
+
 ; java
 
   (add-hook 'java-mode-hook
@@ -330,10 +335,10 @@
 
   (when (require 'webjump-plus nil t)
 
-    (setq browse-url-netscape-program "iceape")
+    (defvar browse-url-netscape-program "iceape")
 
     (global-set-key "\C-cj" 'webjump)
-    (setq webjump-sites `(
+    (defvar webjump-sites `(
 
       ("webjump site prompt response" .
        [simple-query "url for no specified query phrase"
