@@ -215,6 +215,20 @@
   (add-to-list 'auto-mode-alist '("\\.pypic$" . python-mode))
 
 
+; scala
+
+  (require 'scala-mode-auto)
+  (add-hook 'scala-mode-hook
+    '(lambda ()
+       (local-set-key "\M-c" 'compile)
+       (set (make-local-variable 'compile-command)
+	 (let ((fname (file-name-nondirectory buffer-file-name)))
+	   (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
+	     (concat "make " (file-name-sans-extension fname) ".class")
+	     (concat "fsc " fname))))
+       (scala-mode-feature-electric-mode)))
+
+
 ; scheme
 
   (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?)\\|rkt$" . scheme-mode))
