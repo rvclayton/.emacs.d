@@ -217,23 +217,30 @@
 
 ; scala
 
+  ; Clone https://github.com/haxney/scala-mode.git , but it doesn't define
+  ; scala-mode-audo , which can be found at
+  ; lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/emacs/scala-mode-auto.el
+  ; .
 
-  (when (locate-file "scala-mode" load-path load-suffixes)
-
-    (add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
-    (autoload 'scala-mode "scala-mode" "Major mode for scala code." t)
+  (when (require-or-print 'scala-mode-auto)
 
     (add-hook 'scala-mode-hook
-      '(lambda ()
-	 (when (require-or-print 'scala-mode-auto)
-	   (scala-mode-feature-electric-mode))
+      (lambda ()
+	(scala-mode-feature-electric-mode)
 
-	 (local-set-key "\M-c" 'compile)
-	 (set (make-local-variable 'compile-command)
-	   (let ((fname (file-name-nondirectory buffer-file-name)))
-	     (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
-	       (concat "make " (file-name-sans-extension fname) ".class")
-	       (concat "fsc " fname)))))))
+	(local-set-key "\C-csiri" 'scala-run-scala)
+	(local-set-key "\C-csigt" 'scala-switch-to-interpreter)
+	(local-set-key "\C-csier" 'scala-eval-region)
+	(local-set-key "\C-csieb" 'scala-eval-buffer)
+	(local-set-key "\C-csilf" 'scala-eval-load-file)
+	(local-set-key "\C-csiqi" 'scala-quit-interpreter)
+
+	(local-set-key "\M-c" 'compile)
+	(set (make-local-variable 'compile-command)
+	  (let ((fname (file-name-nondirectory buffer-file-name)))
+	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
+	      (concat "make " (file-name-sans-extension fname) ".class")
+	      (concat "fsc " fname)))))))
 
 
 ; scheme
@@ -400,55 +407,8 @@
 
 ; w3m
 
-  (require 'w3m nil 'noerror)
+  (require-or-print 'w3m)
 
-
-; $Log: init.el,v $
-; Revision 1.9  2006-12-20 02:37:28  rclayton
-; Add haskell mode; file-expand to the rmail inbox.
-;
-; Revision 1.8  2006-10-28 16:25:00  rclayton
-; Store semantic files in one directory.
-;
-; Revision 1.7  2006-05-27 00:19:43  rclayton
-; Re-disable bars.
-;
-; Revision 1.6  2006-05-22 02:59:15  rclayton
-; Drop asymptote; update jdee.
-;
-; Revision 1.5  2006-05-04 17:23:45  rclayton
-; Added predictive completion autoload.
-;
-; Revision 1.4  2006-04-04 00:06:39  rclayton
-; Add curry-mode load.
-;
-; Revision 1.3  2006-02-02 03:04:14  rclayton
-; Added an outline-mode hook.
-;
-; Revision 1.2  2006-01-14 12:04:43  rclayton
-; Configure mail addresses based on domain.
-;
-; Revision 1.1.1.1  2006-01-08 19:56:44  rclayton
-; Created
-;
-; Revision 1.17  2005/10/25 19:59:55  rclayton
-; Added gds and oberon initialization.
-;
-; Revision 1.16  2005/09/18 03:18:42  rclayton
-; Add w3m.
-;
-; Revision 1.15  2005/09/08 01:13:21  rclayton
-; 69-character line lengths in mail.
-;
-; Revision 1.14  2005/09/04 02:11:52  rclayton
-; Added antlr mode.
-;
-; Revision 1.13  2005/09/01 02:25:56  rclayton
-; Default to news.verizon.net as the nntp server.
-;
-; Revision 1.12  2005/08/31 17:29:10  rclayton
-; Drop gopher.
-;
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
