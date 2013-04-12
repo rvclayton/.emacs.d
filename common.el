@@ -171,6 +171,12 @@
 			     current-prefix-arg
 			     shell-command-default-error-buffer))
 
+   (defun require-or-print (sym)
+     (if (require sym nil t)
+       t
+       (message "!! %s require failed" sym)
+       nil))
+
    (global-set-key "\e\e" nil)
    (global-set-key "\M-\C-r" 'query-replace-regexp)
    (global-set-key "\M-s" 'replace-regexp)
@@ -215,15 +221,12 @@
 
 ; packages
 
-  (require 'general-utils)
-  (if (< (genutl:emacs-major-version) 24)
-    (load "package.el")
-    (require 'package))
-
-  (setq package-archives 
-    '(("gnu" . "http://elpa.gnu.org/packages/")
-      ("marmalade" . "http://marmalade-repo.org/packages/")
-      ("melpa" . "http://melpa.milkbox.net/packages/")))  
+  (when (require-or-print 'general-utils)
+    (when (or (>= (genutl:emacs-major-version) 24) (require-or-print 'package))
+      (defvar package-archives
+        '(("gnu" . "http://elpa.gnu.org/packages/")
+          ("marmalade" . "http://marmalade-repo.org/packages/")
+          ("melpa" . "http://melpa.milkbox.net/packages/")))))
 
 
 ; $Log: common.el,v $
