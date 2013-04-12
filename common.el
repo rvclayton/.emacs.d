@@ -81,10 +81,7 @@
 		 (throw 'exit nil)))
 	     '("./abbrevs" "./.abbrevs" "~/.abbrevs"))))
 
-  (setq yow-file "~/lib/emacs/lisp/yow.lines")
-
-  (setq ispell-program-name "aspell"
-	ispell-extra-args   '("--sug-mode=ultra"))
+  (defvar yow-file "~/lib/emacs/lisp/yow.lines")
 
 
 ; parens matching
@@ -194,7 +191,11 @@
   ; sometimes flyspell freaks out, and it should be turned off (set to 0) until
   ; it's fixed.
 
-  (setq do-flyspell-mode 1)
+  (if (not (executable-find "aspell"))
+    (defvar do-flyspell-mode 0)
+    (defvar do-flyspell-mode 1)
+    (defvar ispell-program-name "aspell")
+    (defvar ispell-extra-args   '("--sug-mode=ultra")))
 
 
 ; Rename the buffer and the file at the same time.
