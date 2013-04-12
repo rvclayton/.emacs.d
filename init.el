@@ -235,17 +235,9 @@
 
   (add-hook 'scheme-mode-hook
     (lambda ()
-      (show-paren-mode 1)
-      (setq scheme-program-name "guile")
+      (when (require-or-print 'quack)
+        (setq quack-default-program "guile"))
       (setq fill-column 79)
-      (when t
-	; (setq gds-scheme-directory "/usr/local/share/guile")
-	; (require 'gds)
-	(setq debug-on-error t)
-	(local-set-key "\C-cc" 'gds-help-symbol)
-	(local-set-key "\C-ca" 'gds-apropos)
-	(global-set-key "\C-h" 'delete-backward-char))
-      (setq debug-ignored-errors '())
       (local-set-key "\e\C-l" 'goto-line)))
 
 
