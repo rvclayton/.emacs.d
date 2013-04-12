@@ -222,18 +222,8 @@
 
 ; packages
 
-  (when (require-or-print 'general-utils)
-    (when (or (>= (genutl:emacs-major-version) 24) (require-or-print 'package))
-      (defvar package-archives
-        '(("gnu" . "http://elpa.gnu.org/packages/")
-          ("marmalade" . "http://marmalade-repo.org/packages/")
-          ("melpa" . "http://melpa.milkbox.net/packages/")))))
-
-
-; $Log: common.el,v $
-; Revision 1.2  2012/10/28 16:12:29  rclayton
-; add global flyspell switch.
-;
-; Revision 1.1  2011/08/08 01:05:44  rclayton
-; Initial revision
-;
+  (when (or (>= emacs-major-version 24) (require-or-print 'package))
+    (defvar package-archives
+      '(("gnu"       . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")
+        ("melpa"     . "http://melpa.milkbox.net/packages/"))))
