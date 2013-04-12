@@ -217,16 +217,23 @@
 
 ; scala
 
-  (require 'scala-mode-auto)
-  (add-hook 'scala-mode-hook
-    '(lambda ()
-       (local-set-key "\M-c" 'compile)
-       (set (make-local-variable 'compile-command)
-	 (let ((fname (file-name-nondirectory buffer-file-name)))
-	   (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
-	     (concat "make " (file-name-sans-extension fname) ".class")
-	     (concat "fsc " fname))))
-       (scala-mode-feature-electric-mode)))
+
+  (when (locate-file "scala-mode" load-path load-suffixes)
+
+    (add-to-list 'auto-mode-alist '("\\.scala$" . scala-mode))
+    (autoload 'scala-mode "scala-mode" "Major mode for scala code." t)
+
+    (add-hook 'scala-mode-hook
+      '(lambda ()
+	 (when (require-or-print 'scala-mode-auto)
+	   (scala-mode-feature-electric-mode))
+
+	 (local-set-key "\M-c" 'compile)
+	 (set (make-local-variable 'compile-command)
+	   (let ((fname (file-name-nondirectory buffer-file-name)))
+	     (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
+	       (concat "make " (file-name-sans-extension fname) ".class")
+	       (concat "fsc " fname)))))))
 
 
 ; scheme
