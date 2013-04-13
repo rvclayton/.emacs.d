@@ -81,10 +81,7 @@
 		 (throw 'exit nil)))
 	     '("./abbrevs" "./.abbrevs" "~/.abbrevs"))))
 
-  (setq yow-file "~/lib/emacs/lisp/yow.lines")
-
-  (setq ispell-program-name "aspell"
-	ispell-extra-args   '("--sug-mode=ultra"))
+  (defvar yow-file "~/lib/emacs/lisp/yow.lines")
 
 
 ; parens matching
@@ -171,6 +168,12 @@
 			     current-prefix-arg
 			     shell-command-default-error-buffer))
 
+   (defun require-or-print (sym)
+     (if (require sym nil t)
+       t
+       (message "!! %s require failed" sym)
+       nil))
+
    (global-set-key "\e\e" nil)
    (global-set-key "\M-\C-r" 'query-replace-regexp)
    (global-set-key "\M-s" 'replace-regexp)
@@ -188,7 +191,11 @@
   ; sometimes flyspell freaks out, and it should be turned off (set to 0) until
   ; it's fixed.
 
-  (setq do-flyspell-mode 1)
+  (if (not (executable-find "aspell"))
+    (defvar do-flyspell-mode 0)
+    (defvar do-flyspell-mode 1)
+    (defvar ispell-program-name "aspell")
+    (defvar ispell-extra-args   '("--sug-mode=ultra")))
 
 
 ; Rename the buffer and the file at the same time.
@@ -215,21 +222,8 @@
 
 ; packages
 
-  (require 'general-utils)
-  (if (< (genutl:emacs-major-version) 24)
-    (load "package.el")
-    (require 'package))
-
-  (setq package-archives 
-    '(("gnu" . "http://elpa.gnu.org/packages/")
-      ("marmalade" . "http://marmalade-repo.org/packages/")
-      ("melpa" . "http://melpa.milkbox.net/packages/")))  
-
-
-; $Log: common.el,v $
-; Revision 1.2  2012/10/28 16:12:29  rclayton
-; add global flyspell switch.
-;
-; Revision 1.1  2011/08/08 01:05:44  rclayton
-; Initial revision
-;
+  (when (or (>= emacs-major-version 24) (require-or-print 'package))
+    (defvar package-archives
+      '(("gnu"       . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")
+        ("melpa"     . "http://melpa.milkbox.net/packages/"))))
