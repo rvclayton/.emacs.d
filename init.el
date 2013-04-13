@@ -217,7 +217,6 @@
 
 ; scala
 
-  (require 'scala-mode-auto)
   (add-hook 'scala-mode-hook
     '(lambda ()
        (local-set-key "\M-c" 'compile)
@@ -226,6 +225,7 @@
 	   (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
 	     (concat "make " (file-name-sans-extension fname) ".class")
 	     (concat "fsc " fname))))
+
        (scala-mode-feature-electric-mode)))
 
 
