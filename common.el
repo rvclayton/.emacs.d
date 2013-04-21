@@ -32,15 +32,12 @@
 		 "~/local/share/emacs/site-lisp/w3m"
 		 "~/local/share/mdk"
 		 "~/lib/emacs/lisp"
-		 "~/.emacs.d/elpa/clojure-mode-1.6"
-		 "/usr/share/emacs22/site-lisp/w3m"
+		 "/usr/local/share/emacs/site-lisp/scala-mode"
 		 "/usr/share/emacs/site-lisp/haskell-mode"
-		 "/usr/share/emacs/site-lisp/jde"
 		 "/usr/share/emacs/site-lisp/eieio"
 		 "/usr/share/emacs/site-lisp/cedet-common"
 		 "/usr/share/emacs/site-lisp/cedet-contrib"
 		 "/usr/share/emacs/site-lisp/elib"
-		 "/usr/local/packages/jde-2.3.5.1/lisp"
 		 ".") 
 	       load-path)))
        
