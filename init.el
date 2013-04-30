@@ -47,6 +47,7 @@
   (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
   (add-hook 'clojure-mode-hook
     (lambda ()
+      (go-paredit)
       (setq inferior-lisp-program "clojure")))
 
 
@@ -66,6 +67,13 @@
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
         (concat "/home/dart/dart-sdk/bin/dart --enable-checked-mode " (file-name-nondirectory buffer-file-name)))))
+
+
+; elisp
+
+  (add-hook 'emacs-lisp-mode-hook
+    (lambda () 
+      (go-paredit)))
 
 
 ; go
@@ -163,11 +171,13 @@
 
 ; multiple cursors
 
-  (require 'multiple-cursors nil 'noerror)
-  (global-set-key (kbd "C-c mca") 'mc/mark-all-like-this)
-  (global-set-key (kbd "C-c mce") 'mc/edit-lines)
-  (global-set-key (kbd "C-c mcn") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-c mcp") 'mc/mark-previous-like-this)
+  ; clone from https://github.com/magnars/multiple-cursors.el.git
+
+  (when (require-or-print 'multiple-cursors)
+    (global-set-key (kbd "C-c mca") 'mc/mark-all-like-this)
+    (global-set-key (kbd "C-c mce") 'mc/edit-lines)
+    (global-set-key (kbd "C-c mcn") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-c mcp") 'mc/mark-previous-like-this))
 
 
 ; no web.
@@ -201,6 +211,15 @@
       (setq outline-regexp "\\.+")
       (local-set-key "\M-\C-d" 'insert-date)))
     
+
+; paredit
+
+  ; get paredit from http://mumble.net/~campbell/emacs/paredit.el
+
+  (defun go-paredit ()
+    (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+    (enable-paredit-mode))
+
 
 ; Python
 
@@ -247,12 +266,15 @@
 
   (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?)\\|rkt$" . scheme-mode))
 
+  ; get quack.el from http://www.neilvandyke.org/quack/quack.el
+
   (add-hook 'scheme-mode-hook
     (lambda ()
       (when (require-or-print 'quack)
         (setq quack-default-program "guile"))
       (setq fill-column 79)
-      (local-set-key "\e\C-l" 'goto-line)))
+      (local-set-key "\e\C-l" 'goto-line)
+      (go-paredit)))
 
 
 ; tcl
