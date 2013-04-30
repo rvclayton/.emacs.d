@@ -32,6 +32,7 @@
 		 "~/local/share/emacs/site-lisp/w3m"
 		 "~/local/share/mdk"
 		 "~/lib/emacs/lisp"
+		 "~/lib/emacs/multiple-cursors.el"
 		 "~/.emacs.d/elpa/clojure-mode-1.6"
 		 "/usr/share/emacs22/site-lisp/w3m"
 		 "/usr/share/emacs/site-lisp/haskell-mode"
