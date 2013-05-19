@@ -248,7 +248,7 @@
 	(scala-mode-feature-electric-mode)
 
 	(local-set-key "\C-csiri" 'scala-run-scala)
-	(local-set-key "\C-csigt" 'scala-switch-to-interpreter)
+	(local-set-key "\C-csiti" 'scala-switch-to-interpreter)
 	(local-set-key "\C-csier" 'scala-eval-region)
 	(local-set-key "\C-csieb" 'scala-eval-buffer)
 	(local-set-key "\C-csilf" 'scala-eval-load-file)
