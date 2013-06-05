@@ -5,15 +5,16 @@
   (defvar my-mail-dir "~/mail" "the directory containing mail files")
 
   (setq mail-user-agent 'sendmail-user-agent)
-  (setq rmail-primary-inbox-list '())
+  (setq rmail-primary-inbox-list (list))
   (mapc 
     (lambda (f)
       (when (file-exists-p f)
-	(setq rmail-primary-inbox-list (cons f rmail-primary-inbox-list))))
+	(add-to-list 'rmail-primary-inbox-list f)))
     (list
       (expand-file-name (concat my-mail-dir "/hcoop-incoming"))
       (expand-file-name (concat my-mail-dir "/incoming"))
-      (concat "/var/mail/" (user-login-name))))
+      (concat "/var/mail/" (user-login-name))
+      (concat "/var/spool/mail/" (user-login-name))))
 
   (let ((month (substring (downcase (current-time-string)) 4 7)))
     (setq mail-archive-file-name (concat my-mail-dir "/" month ".out"))
