@@ -84,14 +84,14 @@
 ; haskell
 
   (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
-  (autoload 'haskell-mode "haskell-mode" "Go into haskell mode" t)
 
-  (add-hook 'haskell-mode-hook
-    (lambda() "Haskell mode hacks"
-      (load "inf-haskell")
-      (define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
-      (turn-on-font-lock)
-      (turn-on-haskell-doc-mode)))
+  (when (autoload 'haskell-mode "haskell-mode" "Turn on haskell mode." t)
+    (add-hook 'haskell-mode-hook
+      (lambda() "Haskell mode hacks"
+	(load "inf-haskell")
+	(define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
+	(turn-on-font-lock)
+	(turn-on-haskell-doc-mode))))
 
 
 ; html

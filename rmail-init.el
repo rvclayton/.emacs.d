@@ -5,7 +5,7 @@
   (defvar my-mail-dir "~/mail" "the directory containing mail files")
 
   (setq mail-user-agent 'sendmail-user-agent)
-  (setq rmail-primary-inbox-list '())
+  (setq rmail-primary-inbox-list (list))
   (mapc 
     (lambda (f)
       (when (file-exists-p f)
