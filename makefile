@@ -2,3 +2,7 @@
 	  emacs --batch --eval '(byte-compile-file "$<")'
 
 go	: $(addsuffix .elc, init common gnus-init rmail-init)
+
+init.elc	: common.elc
+rmail-init.elc	: common.elc
+gnus-init.elc	: common.elc
