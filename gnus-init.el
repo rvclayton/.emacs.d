@@ -1,4 +1,4 @@
-(load "~rclayton/.emacs.d/common.elc")
+(load "~rclayton/.emacs.d/common")
 
 ; gnus
 
