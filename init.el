@@ -90,6 +90,7 @@
       (lambda() "Haskell mode hacks"
 	(load "inf-haskell")
 	(define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
+	(define-key haskell-mode-map "\C-c\C-g" 'goto-line)
 	(turn-on-font-lock)
 	(turn-on-haskell-doc-mode))))
 
