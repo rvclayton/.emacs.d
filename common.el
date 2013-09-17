@@ -217,6 +217,23 @@
   (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
 
+; make label text visibile on dark (black) backgrounds.
+
+  ; This may be a bad thing to do because there's only supposed to be one of
+  ; these forms managed by custom mode.  Custom mode stores this form in the
+  ; init file, not in this file.  Using custom mode to fiddle with the font
+  ; faces will create a second form, which is claimed to screw things up.
+
+  (custom-set-faces
+    '(minibuffer-prompt ((t (:foreground "green"))))
+    '(w3m-anchor 
+      ((((class color) (background dark)) (:foreground "yellow"))
+       (((class color) (background light)) (:foreground "yellow"))))
+    '(w3m-arrived-anchor 
+      ((((class color) (background dark)) (:foreground "cyan")) 
+       (((class color) (background light)) (:foreground "cyan")))))
+
+
 ; packages
 
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
