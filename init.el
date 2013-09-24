@@ -86,15 +86,17 @@
   (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 
   (when (autoload 'haskell-mode "haskell-mode" "Turn on haskell mode." t)
-    (require 'flymake-haskell-multi) ;; not needed if installed via package
-    (add-hook 'haskell-mode-hook 'flymake-haskell-multi-load)
     (add-hook 'haskell-mode-hook
       (lambda() "Haskell mode hacks"
 	(load "inf-haskell")
 	(define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
 	(define-key haskell-mode-map "\C-cgl" 'goto-line)
 	(turn-on-font-lock)
-	(turn-on-haskell-doc-mode))))
+	(turn-on-haskell-doc-mode)
+	(local-set-key "\M-c" 'compile)
+	(set (make-local-variable 'compile-command)
+	     (concat "ghc " (file-name-nondirectory buffer-file-name)
+		     " && hlint " (file-name-nondirectory buffer-file-name))))))
 
 
 ; html
