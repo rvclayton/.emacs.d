@@ -92,7 +92,7 @@
       (lambda() "Haskell mode hacks"
 	(load "inf-haskell")
 	(define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
-	(define-key haskell-mode-map "\C-c\C-g" 'goto-line)
+	(define-key haskell-mode-map "\C-cgl" 'goto-line)
 	(turn-on-font-lock)
 	(turn-on-haskell-doc-mode))))
 
@@ -235,34 +235,6 @@
   (autoload 'python "python-mode" "" t)
   (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
   (add-to-list 'auto-mode-alist '("\\.pypic$" . python-mode))
-
-
-; scala
-
-  ; Clone https://github.com/haxney/scala-mode.git , but it doesn't define
-  ; scala-mode-audo , which can be found at
-  ; lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/emacs/scala-mode-auto.el
-  ; .
-
-  (when (require-or-print 'scala-mode-auto)
-
-    (add-hook 'scala-mode-hook
-      (lambda ()
-	(scala-mode-feature-electric-mode)
-
-	(local-set-key "\C-csiri" 'scala-run-scala)
-	(local-set-key "\C-csiti" 'scala-switch-to-interpreter)
-	(local-set-key "\C-csier" 'scala-eval-region)
-	(local-set-key "\C-csieb" 'scala-eval-buffer)
-	(local-set-key "\C-csilf" 'scala-eval-load-file)
-	(local-set-key "\C-csiqi" 'scala-quit-interpreter)
-
-	(local-set-key "\M-c" 'compile)
-	(set (make-local-variable 'compile-command)
-	  (let ((fname (file-name-nondirectory buffer-file-name)))
-	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
-	      (concat "make " (file-name-sans-extension fname) ".class")
-	      (concat "fsc " fname)))))))
 
 
 ; scheme
