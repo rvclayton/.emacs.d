@@ -237,7 +237,7 @@
 ; packages
 
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
+    (package-initialize)
     (mapc (lambda (p) (add-to-list 'package-archives p)) 
       '(("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa"     . "http://melpa.milkbox.net/packages/")))
-    (package-initialize))
+        ("melpa"     . "http://melpa.milkbox.net/packages/"))))
