@@ -74,16 +74,20 @@
 ; haskell
 
   (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+  (autoload 'haskell-mode "haskell-mode" "Go into haskell mode" t)
 
-  (when (autoload 'haskell-mode "haskell-mode" "Turn on haskell mode." t)
-    (add-hook 'haskell-mode-hook
-      (lambda() "Haskell mode hacks"
-	(load "inf-haskell")
-	(define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
-	(define-key haskell-mode-map "\C-c\C-g" 'goto-line)
-	(turn-on-font-lock)
-	(turn-on-haskell-doc-mode))))
-
+  (add-hook 'haskell-mode-hook
+    (lambda() "Haskell mode hacks"
+      (load "inf-haskell")
+      (load-library "haskell-toys")
+      (define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
+      (define-key haskell-mode-map "\C-c\C-g" 'goto-line)
+      (turn-on-font-lock)
+      (turn-on-haskell-doc-mode)
+      (local-set-key "\M-c" 'compile)
+      (set (make-local-variable 'compile-command)
+	   (concat "ghc " (file-name-nondirectory buffer-file-name) 
+		   " && hlint " (file-name-nondirectory buffer-file-name)))))
 
 ; html
 
