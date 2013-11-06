@@ -313,6 +313,10 @@
 ; twitter
 
   (cond
+    (t ; twittering-mode.el
+      (when (require-or-print 'twittering-mode)
+	(setq twittering-use-master-password t)))
+
     (nil ; ublog.el
       (require 'ublog))
 
@@ -325,7 +329,7 @@
         (lambda ()
 	  (local-set-key "\C-c\C-u" 'twitter-get-friends-timeline))))
 
-    (t ; twitel.el
+    (nil ; twitel.el
       (autoload 'twitel-get-friends-timeline "twitel" nil t)
       (autoload 'twitel-status-edit "twitel" nil t)
       (global-set-key "\C-xt" 'twitel-get-friends-timeline)
