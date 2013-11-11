@@ -216,6 +216,14 @@
     (enable-paredit-mode))
 
 
+; pyret
+
+  (ignore-errors
+    (require 'pyret)
+    (add-to-list 'auto-mode-alist '("\\.arr$" . pyret-mode))
+    (add-to-list 'file-coding-system-alist '("\\.arr\\'" . utf-8)))
+
+
 ; Python
 
   (add-hook 'python-mode-hook
