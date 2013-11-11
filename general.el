@@ -109,11 +109,6 @@
       (load "icon-mode-defs" nil t)))
 
 
-; identica
-
-  (require 'identica nil 'noerror)
-
-
 ; java
 
   (add-hook 'java-mode-hook
