@@ -109,11 +109,6 @@
       (load "icon-mode-defs" nil t)))
 
 
-; identica
-
-  (require 'identica nil 'noerror)
-
-
 ; java
 
   (add-hook 'java-mode-hook
@@ -214,6 +209,14 @@
   (defun go-paredit ()
     (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
     (enable-paredit-mode))
+
+
+; pyret
+
+  (ignore-errors
+    (require 'pyret)
+    (add-to-list 'auto-mode-alist '("\\.arr$" . pyret-mode))
+    (add-to-list 'file-coding-system-alist '("\\.arr\\'" . utf-8)))
 
 
 ; Python
