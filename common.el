@@ -139,9 +139,9 @@
     (setq auto-insert-directory "~/lib/emacs/lisp/auto-ins-skeletons")
     (setq auto-insert-query nil)
     (mapc (lambda (p) (define-auto-insert (car p) (cdr p)))
-      '(("\.java" . "java")
-	("\.pic" . "pic")
-	("\.arr" . "pyret")
+      '(("\\.java$" . "java")
+	("\\.pic$" . "pic")
+	("\\.arr$" . "pyret")
 	("gen-[^/]*html$" . "gen-html"))))
 
 
