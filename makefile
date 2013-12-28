@@ -1,5 +1,5 @@
 %.elc	: %.el
-	  emacs --batch --eval '(byte-compile-file "$<")'
+	  emacs --batch --eval '(byte-compile-file "~/.emacs.d/$<" nil)'
 
 go	: $(addsuffix .elc, init common gnus-init rmail-init general)
 
