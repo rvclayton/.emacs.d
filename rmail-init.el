@@ -2,6 +2,8 @@
 
 ; rmail
 
+   (require 'general-utils)
+
    (defvar my-mail-dir "~/mail" "the directory containing mail files")
 
    (setq mail-user-agent 'sendmail-user-agent)
@@ -58,9 +60,14 @@
 	(NoBackupMode)
 	(define-key rmail-mode-map "\e." 'fill-paragraph)
 	(add-hook 'rmail-show-message-hook 'mail-delete-nesting)
-	(setq rmail-confirm-expunge nil)))
+	(setq rmail-confirm-expunge nil))
 
-; $Log: rmail-init.el,v $
-; Revision 1.1  2013/02/06 02:53:44  rclayton
-; Initial revision
-;
+	(defadvice rmail-summary
+	  (after shrink-summary-buffer activate)
+	  "Shrink the summary buffer if it's about half the frame height and the unshrunk size is larger than the shrunk size."
+	  (let ((h-pct (genutl:window-height-percentage (window-buffer))))
+	    (when (and (< 0.4 h-pct) (< h-pct 0.6))
+	      (let ((h-min 8)
+		    (h-lns (window-height)))
+		(when (< h-min h-lns)
+		  (enlarge-window (- h-min h-lns))))))))
