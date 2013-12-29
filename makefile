@@ -1,5 +1,6 @@
 %.elc	: %.el
-	  emacs --batch --eval '(byte-compile-file "~/.emacs.d/$<" nil)'
+	  emacs --batch --eval \
+	    '(progn (push "~/lib/emacs/lisp" load-path) (byte-compile-file "$<"))'
 
 go	: $(addsuffix .elc, init common gnus-init rmail-init general)
 
