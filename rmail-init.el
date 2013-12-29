@@ -65,7 +65,7 @@
 	(defadvice rmail-summary
 	  (after shrink-summary-buffer activate)
 	  "Shrink the summary buffer if it's about half the frame height and the unshrunk size is larger than the shrunk size."
-	  (let ((h-pct (genutl:window-height-percentage (window-buffer))))
+	  (let ((h-pct (genutl:window-height-percentage)))
 	    (when (and (< 0.4 h-pct) (< h-pct 0.6))
 	      (let ((h-min 8)
 		    (h-lns (window-height)))
