@@ -349,7 +349,7 @@
 
 ; web jump
 
-  (when (require 'webjump-plus nil t)
+  (when (require-or-print 'webjump-plus)
 
     (defvar browse-url-netscape-program "iceape")
 
@@ -404,3 +404,12 @@
 ; w3m
 
   (require-or-print 'w3m)
+
+
+; yaml
+
+  (when (require-or-print 'yaml-mode)
+    (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+    (add-hook 'yaml-mode-hook
+     '(lambda ()
+        (define-key yaml-mode-map "\C-m" 'newline-and-indent)))) 
