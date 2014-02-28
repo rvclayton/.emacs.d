@@ -130,7 +130,7 @@
 
        (set (make-local-variable 'compile-command)
          (let ((filename (file-name-nondirectory buffer-file-name)))
-	    (if (or (file-exists-p "makefile") (fpile-exists-p "Makefile"))
+	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
 	      (concat "make " 
 		      (file-name-sans-extension filename) ".class")
 	      (concat "javac -Xlint " filename))))))
