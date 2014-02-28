@@ -1,4 +1,4 @@
-; Common environent for any emacs invocation.
+					; Common environent for any emacs invocation.
 
   ; naked emacs.
 
@@ -21,6 +21,26 @@
 	      (add-to-list 'drs o)))
 	lst)
       (reverse drs)))
+
+
+   (defun find-first-file (default &rest files)
+
+     ; Return the first file found in a left-to-right scan of the given file
+     ; list.  If none of the files exists, return the given default value.
+
+     (let (f)
+
+       (fset 'f
+         (lambda (files)
+	   (if (null files)
+	     default
+	     (let ((file (car files)))
+	       (if (file-exists-p file)
+		 file
+		 (f (cdr files)))))))
+
+       (f files)))
+
 
    (setq local-site-path "/usr/local/share/emacs/site-lisp")
 
