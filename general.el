@@ -211,6 +211,19 @@
     (enable-paredit-mode))
 
 
+; processing
+
+  (add-hook 'processing-mode-hook
+    (lambda ()
+      (message "in processing mode hook")
+      (setq processing-sketchbook-dir
+        (find-first-file 
+	   "~/sketchbook"
+	   "/mnt/projects/processing/sketchbook"
+	   "~/projects/sketchbook"))
+      (set-fill-column 79)))
+
+  
 ; pyret
 
   (ignore-errors
