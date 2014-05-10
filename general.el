@@ -238,7 +238,8 @@
     (lambda ()
       (define-key python-mode-map "\el" 'goto-line)
       (setq python-indent 2)
-      (set-fill-column 79)))
+      (set-fill-column 79))
+      (require-or-print 'ipython))
 
   (autoload 'python "python-mode" "" t)
   (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
