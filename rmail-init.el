@@ -47,7 +47,7 @@
 	 (setq mail-host-address "monmouth.edu")
 	 (setq user-mail-address (concat "rclayton@" mail-host-address)))
       (t
-	 (setq mail-host-address "verizon.net") ; was "acm.org" 
+	 (setq mail-host-address "acm.org") ; was "verizon.net" 
 	 (setq user-mail-address (concat "rvclayton@" mail-host-address))))
 
     (add-hook 'mail-mode-hook 
