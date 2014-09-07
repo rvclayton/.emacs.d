@@ -154,6 +154,15 @@
       (local-set-key "\M-c" 'compile)))
 
 
+; markdown
+
+     (autoload 'markdown-mode "markdown-mode"
+       "Major mode for editing Markdown files" t)
+     (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
 ; msgs
 
   (add-to-list 'auto-mode-alist '("/var/log/messages" . auto-revert-tail-mode))
@@ -215,13 +224,20 @@
 
   (add-hook 'processing-mode-hook
     (lambda ()
-      (message "in processing mode hook")
       (setq processing-sketchbook-dir
         (find-first-file 
 	   "~/sketchbook"
 	   "/mnt/projects/processing/sketchbook"
 	   "~/projects/sketchbook"))
-      (set-fill-column 79)))
+      (set-fill-column 79)
+      (local-set-key "\M-c" 'processing-sketch-build)
+      (local-set-key "^Cpsr" 'processing-sketch-run)
+      (setq processing-location 
+        "/mnt/projects/processing/processing/processing-java")
+      ; A cheap hack to get around newer emacsen dropping the user-error 
+      ; function.
+      (unless (fboundp 'user-error) (fset 'user-error 'error)))
+      )
 
   
 ; pyret
