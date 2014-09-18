@@ -46,6 +46,27 @@
    (autoload 'cmushell "cmushell" "Run an inferior shell process." t)
 
 
+; compile on save mode
+
+  (defun compile-on-save-start ()
+    (let ((buffer (compilation-find-buffer)))
+      (unless (get-buffer-process buffer) 
+	(recompile))))
+
+  (define-minor-mode compile-on-save-mode
+
+    "Minor mode to automatically call `recompile' whenever the
+  current buffer is saved. When there is ongoing compilation,
+  nothing happens."
+
+    :lighter " CoS"
+
+    (if compile-on-save-mode
+      (progn  (make-local-variable 'after-save-hook)
+	      (add-hook 'after-save-hook 'compile-on-save-start nil t))
+      (kill-local-variable 'after-save-hook)))
+
+
 ; dart
 
   (autoload 'dart-mode "dart-mode" "Major mode for dart code." t)
@@ -254,8 +275,8 @@
     (lambda ()
       (define-key python-mode-map "\el" 'goto-line)
       (setq python-indent 2)
-      (set-fill-column 79))
-      (require-or-print 'ipython))
+      (set-fill-column 79)
+      (require-or-print 'ipython)))
 
   (autoload 'python "python-mode" "" t)
   (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
