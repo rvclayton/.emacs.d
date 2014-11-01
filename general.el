@@ -252,7 +252,7 @@
 	   "~/projects/sketchbook"))
       (set-fill-column 79)
       (local-set-key "\M-c" 'processing-sketch-build)
-      (local-set-key "^Cpsr" 'processing-sketch-run)
+      (local-set-key "\C-cpsr" 'processing-sketch-run)
       (setq processing-location 
         "/mnt/projects/processing/processing/processing-java")
       ; A cheap hack to get around newer emacsen dropping the user-error 
