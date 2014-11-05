@@ -1,4 +1,4 @@
-					; Common environent for any emacs invocation.
+; Common environent for any emacs invocation.
 
   ; naked emacs.
 
