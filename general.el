@@ -46,6 +46,27 @@
    (autoload 'cmushell "cmushell" "Run an inferior shell process." t)
 
 
+; compile on save mode
+
+  (defun compile-on-save-start ()
+    (let ((buffer (compilation-find-buffer)))
+      (unless (get-buffer-process buffer) 
+	(recompile))))
+
+  (define-minor-mode compile-on-save-mode
+
+    "Minor mode to automatically call `recompile' whenever the
+  current buffer is saved. When there is ongoing compilation,
+  nothing happens."
+
+    :lighter " CoS"
+
+    (if compile-on-save-mode
+      (progn  (make-local-variable 'after-save-hook)
+	      (add-hook 'after-save-hook 'compile-on-save-start nil t))
+      (kill-local-variable 'after-save-hook)))
+
+
 ; dart
 
   (autoload 'dart-mode "dart-mode" "Major mode for dart code." t)
@@ -154,6 +175,15 @@
       (local-set-key "\M-c" 'compile)))
 
 
+; markdown
+
+     (autoload 'markdown-mode "markdown-mode"
+       "Major mode for editing Markdown files" t)
+     (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
 ; msgs
 
   (add-to-list 'auto-mode-alist '("/var/log/messages" . auto-revert-tail-mode))
@@ -213,15 +243,29 @@
 
 ; processing
 
+  ; Don't forget to add the processing-mode package.
+
+  (add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
+
   (add-hook 'processing-mode-hook
     (lambda ()
-      (message "in processing mode hook")
       (setq processing-sketchbook-dir
         (find-first-file 
-	   "~/sketchbook"
-	   "/mnt/projects/processing/sketchbook"
-	   "~/projects/sketchbook"))
-      (set-fill-column 79)))
+	   "./sketchbook"
+	   "~/projects/sketchbook"
+	   "/mnt/projects/processing/sketchbook"))
+      (set-fill-column 79)
+      (local-set-key "\M-c" 'processing-sketch-build)
+      (local-set-key "\C-cpr" 'processing-sketch-run)
+      (setq processing-location 
+        (find-first-file 
+	  ""
+	  "/usr/local/packages/processing/processing-java"
+	  "/mnt/projects/processing/processing/processing-java"))
+      ; A cheap hack to get around newer emacsen dropping the user-error 
+      ; function.
+      (unless (fboundp 'user-error) (fset 'user-error 'error)))
+      )
 
   
 ; pyret
@@ -238,7 +282,8 @@
     (lambda ()
       (define-key python-mode-map "\el" 'goto-line)
       (setq python-indent 2)
-      (set-fill-column 79)))
+      (set-fill-column 79)
+      (require-or-print 'ipython)))
 
   (autoload 'python "python-mode" "" t)
   (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
