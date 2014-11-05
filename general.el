@@ -243,18 +243,25 @@
 
 ; processing
 
+  ; Don't forget to add the processing-mode package.
+
+  (add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
+
   (add-hook 'processing-mode-hook
     (lambda ()
       (setq processing-sketchbook-dir
         (find-first-file 
-	   "~/sketchbook"
-	   "/mnt/projects/processing/sketchbook"
-	   "~/projects/sketchbook"))
+	   "./sketchbook"
+	   "~/projects/sketchbook"
+	   "/mnt/projects/processing/sketchbook"))
       (set-fill-column 79)
       (local-set-key "\M-c" 'processing-sketch-build)
-      (local-set-key "\C-cpsr" 'processing-sketch-run)
+      (local-set-key "\C-cpr" 'processing-sketch-run)
       (setq processing-location 
-        "/mnt/projects/processing/processing/processing-java")
+        (find-first-file 
+	  ""
+	  "/usr/local/packages/processing/processing-java"
+	  "/mnt/projects/processing/processing/processing-java"))
       ; A cheap hack to get around newer emacsen dropping the user-error 
       ; function.
       (unless (fboundp 'user-error) (fset 'user-error 'error)))
