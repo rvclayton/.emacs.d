@@ -264,5 +264,4 @@
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
     (package-initialize)
     (mapc (lambda (p) (add-to-list 'package-archives p)) 
-      '(("melpa"     . "http://melpa.milkbox.net/packages/")
-	("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))))
+      '(("melpa-stable" . "http://stable.melpa.org/"))))
