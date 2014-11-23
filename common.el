@@ -1,4 +1,4 @@
-					; Common environent for any emacs invocation.
+; Common environent for any emacs invocation.
 
   ; naked emacs.
 
@@ -258,8 +258,10 @@
 
 ; packages
 
+  ; ("marmalade" . "http://marmalade-repo.org/packages/")
+  ; replaced by melpa-stable
+        
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
     (package-initialize)
     (mapc (lambda (p) (add-to-list 'package-archives p)) 
-      '(("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa"     . "http://melpa.milkbox.net/packages/"))))
+      '(("melpa-stable" . "http://stable.melpa.org/"))))
