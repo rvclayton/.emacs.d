@@ -208,7 +208,8 @@
 
   (defun go-paredit ()
     (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-    (enable-paredit-mode))
+    (enable-paredit-mode)
+    (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
 
 ; processing
