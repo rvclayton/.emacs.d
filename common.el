@@ -1,4 +1,4 @@
-					; Common environent for any emacs invocation.
+; Common environent for any emacs invocation.
 
   ; naked emacs.
 
@@ -254,6 +254,16 @@
     '(w3m-arrived-anchor 
       ((((class color) (background dark)) (:foreground "cyan")) 
        (((class color) (background light)) (:foreground "cyan")))))
+
+
+; Make noise characters less visible.
+
+  (defface noise-chars-face
+     '((((class color) (background dark))
+	(:foreground "grey25"))
+       (((class color) (background light))
+	(:foreground "grey75")))
+     "Face used to dim noise characters.")
 
 
 ; packages
