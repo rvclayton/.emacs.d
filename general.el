@@ -77,7 +77,7 @@
       (local-set-key "\e\C-l" 'goto-line)
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
-        (concat "/home/dart/dart-sdk/bin/dart --enable-checked-mode " (file-name-nondirectory buffer-file-name)))))
+        (concat "dartanalyzer --machine " (file-name-nondirectory buffer-file-name)))))
 
 
 ; elisp
