@@ -162,6 +162,7 @@
       '(("\\.java$" . "java")
 	("\\.pic$" . "pic")
 	("\\.arr$" . "pyret")
+	("\\.awkpic$" . "awkpic")
 	("gen-[^/]*html$" . "gen-html"))))
 
 
