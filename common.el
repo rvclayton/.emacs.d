@@ -240,6 +240,12 @@
   (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
 
+; ace jump everywhere.
+
+  (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
+  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+
 ; make label text visibile on dark (black) backgrounds.
 
   ; This may be a bad thing to do because there's only supposed to be one of
@@ -261,8 +267,8 @@
 
   ; ("marmalade" . "http://marmalade-repo.org/packages/")
   ; replaced by melpa-stable
-        
+
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
     (package-initialize)
     (mapc (lambda (p) (add-to-list 'package-archives p)) 
-      '(("melpa-stable" . "http://stable.melpa.org/"))))
+	  '(("melpa-stable" . "http://stable.melpa.org/packages/"))))
