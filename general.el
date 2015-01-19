@@ -208,28 +208,26 @@
 
 ; org-mode
 
-  (require 'org-install nil 'noerror)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-  (define-key global-map "\C-cl" 'org-store-link)
-  (define-key global-map "\C-ca" 'org-agenda)
-  (setq org-log-done t)
+  (add-hook 'org-mode-hook
+    (lambda () 
+      (require 'org-install nil 'noerror)
+      (define-key global-map "\C-cl" 'org-store-link)
+      (define-key global-map "\C-ca" 'org-agenda)
+      (setq org-log-done t)))
 
 
 ; outlines
 
   (add-to-list 'auto-mode-alist '("\\.ol$" . outline-mode))
-
-  (defun insert-date ()
-
-    "Insert the date and time into the current buffer at the current location."
-
-    (interactive)
-    (insert (format-time-string "%Y %h %d")))
-
-  (add-hook 'outline-minor-mode-hook
+  (add-hook 'outline-mode-hook
     (lambda ()
       (setq outline-regexp "\\.+")
-      (local-set-key "\M-\C-d" 'insert-date)))
+      (local-set-key "\C-cd" 
+        (lambda ()
+	  "insert today's date at point"
+	  (interactive)
+	  (insert (format-time-string "%Y %h %d"))))))
     
 
 ; paredit
