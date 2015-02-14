@@ -149,6 +149,8 @@
        (local-set-key "\M-c" 'compile)
        (local-set-key "\e\C-l" 'goto-line)
 
+       (yas-minor-mode 1)
+
        (set (make-local-variable 'compile-command)
          (let ((filename (file-name-nondirectory buffer-file-name)))
 	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
@@ -469,3 +471,9 @@
     (add-hook 'yaml-mode-hook
      '(lambda ()
         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))) 
+
+
+; yasnippet
+
+  (require-or-print 'yasnippet)
+  (yas-global-mode 1)
