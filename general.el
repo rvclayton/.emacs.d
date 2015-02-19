@@ -140,16 +140,17 @@
        (c-set-offset (quote statement-block-intro) 2 nil)
        (c-set-offset (quote substatement) 2 nil)
        (c-set-offset (quote class-close) 2 nil)
-       (c-set-offset (quote defun-close) 2 nil)
+       (c-set-offset (quote defun-close) 4 nil)
        (c-set-offset (quote topmost-intro-cont) 0 nil)
+       (c-set-offset 'arglist-intro 2 nil)
+       (c-set-offset 'func-decl-cont 0 nil)
+       (c-set-offset 'statement-case-intro 2 nil)
 
        (load "java-mode-defs" nil t)
        (set-variable 'fill-column 79)
        (setq dabbrev-case-fold-search nil)
        (local-set-key "\M-c" 'compile)
        (local-set-key "\e\C-l" 'goto-line)
-
-       (yas-minor-mode 1)
 
        (set (make-local-variable 'compile-command)
          (let ((filename (file-name-nondirectory buffer-file-name)))
