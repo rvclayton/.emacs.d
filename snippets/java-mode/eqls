@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: equals
+# key: eqls
+# --
+@Override
+public boolean
+equals(Object o) {
+  if (this == o)
+    return true;
+  if (!(o instanceof ${1:class}))
+    return false;
+  final $1 i = ($1) o;
+  return $0;
+  }
+
+
+@Override
+public int
+hashValue() {
+  return ....;
+  }
