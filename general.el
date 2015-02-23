@@ -157,7 +157,14 @@
 	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
 	      (concat "make " 
 		      (file-name-sans-extension filename) ".class")
-	      (concat "javac -Xlint " filename))))))
+	      (concat "javac -Xlint " filename))))
+
+       (setq compilation-exit-message-function
+         (lambda (status code msg)
+	   (when (and (eq status 'exit) (zerop code))
+	     (bury-buffer)
+	     (delete-window (get-buffer-window (get-buffer "*compilation*"))))
+	   (cons msg code)))))
 
 ; javascript
 
