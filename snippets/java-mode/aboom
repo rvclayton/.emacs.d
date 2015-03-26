@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: assertion fail
+# key: aboom
+# --
+assert false : "${1:method-name}() unimplemented.";

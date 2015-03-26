@@ -77,7 +77,7 @@
       (local-set-key "\e\C-l" 'goto-line)
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
-        (concat "/home/dart/dart-sdk/bin/dart --enable-checked-mode " (file-name-nondirectory buffer-file-name)))))
+        (concat "dartanalyzer --machine " (file-name-nondirectory buffer-file-name)))))
 
 
 ; elisp
@@ -140,8 +140,11 @@
        (c-set-offset (quote statement-block-intro) 2 nil)
        (c-set-offset (quote substatement) 2 nil)
        (c-set-offset (quote class-close) 2 nil)
-       (c-set-offset (quote defun-close) 2 nil)
+       (c-set-offset (quote defun-close) 4 nil)
        (c-set-offset (quote topmost-intro-cont) 0 nil)
+       (c-set-offset 'arglist-intro 2 nil)
+       (c-set-offset 'func-decl-cont 0 nil)
+       (c-set-offset 'statement-case-intro 2 nil)
 
        (load "java-mode-defs" nil t)
        (set-variable 'fill-column 79)
@@ -154,7 +157,14 @@
 	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
 	      (concat "make " 
 		      (file-name-sans-extension filename) ".class")
-	      (concat "javac -Xlint " filename))))))
+	      (concat "javac -Xlint " filename))))
+
+       (setq compilation-exit-message-function
+         (lambda (status code msg)
+	   (when (and (eq status 'exit) (zerop code))
+	     (bury-buffer)
+	     (delete-window (get-buffer-window (get-buffer "*compilation*"))))
+	   (cons msg code)))))
 
 ; javascript
 
@@ -208,28 +218,26 @@
 
 ; org-mode
 
-  (require 'org-install nil 'noerror)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-  (define-key global-map "\C-cl" 'org-store-link)
-  (define-key global-map "\C-ca" 'org-agenda)
-  (setq org-log-done t)
+  (add-hook 'org-mode-hook
+    (lambda () 
+      (require 'org-install nil 'noerror)
+      (define-key global-map "\C-cl" 'org-store-link)
+      (define-key global-map "\C-ca" 'org-agenda)
+      (setq org-log-done t)))
 
 
 ; outlines
 
   (add-to-list 'auto-mode-alist '("\\.ol$" . outline-mode))
-
-  (defun insert-date ()
-
-    "Insert the date and time into the current buffer at the current location."
-
-    (interactive)
-    (insert (format-time-string "%Y %h %d")))
-
-  (add-hook 'outline-minor-mode-hook
+  (add-hook 'outline-mode-hook
     (lambda ()
       (setq outline-regexp "\\.+")
-      (local-set-key "\M-\C-d" 'insert-date)))
+      (local-set-key "\C-cd" 
+        (lambda ()
+	  "insert today's date at point"
+	  (interactive)
+	  (insert (format-time-string "%Y %h %d"))))))
     
 
 ; paredit
@@ -238,7 +246,8 @@
 
   (defun go-paredit ()
     (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-    (enable-paredit-mode))
+    (enable-paredit-mode)
+    (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
 
 ; processing
@@ -471,3 +480,9 @@
     (add-hook 'yaml-mode-hook
      '(lambda ()
         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))) 
+
+
+; yasnippet
+
+  (require-or-print 'yasnippet)
+  (yas-global-mode 1)

@@ -162,6 +162,7 @@
       '(("\\.java$" . "java")
 	("\\.pic$" . "pic")
 	("\\.arr$" . "pyret")
+	("\\.awkpic$" . "awkpic")
 	("gen-[^/]*html$" . "gen-html"))))
 
 
@@ -239,6 +240,12 @@
   (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
 
+; ace jump everywhere.
+
+  (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
+  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+
 ; make label text visibile on dark (black) backgrounds.
 
   ; This may be a bad thing to do because there's only supposed to be one of
@@ -256,13 +263,22 @@
        (((class color) (background light)) (:foreground "cyan")))))
 
 
+; Make noise characters less visible.
+
+  (defface noise-chars-face
+     '((((class color) (background dark))
+	(:foreground "grey25"))
+       (((class color) (background light))
+	(:foreground "grey75")))
+     "Face used to dim noise characters.")
+
+
 ; packages
 
   ; ("marmalade" . "http://marmalade-repo.org/packages/")
   ; replaced by melpa-stable
-        
+
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
     (package-initialize)
     (mapc (lambda (p) (add-to-list 'package-archives p)) 
-      '(("melpa"     . "http://melpa.milkbox.net/packages/")
-	("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))))
+	  '(("melpa-stable" . "http://stable.melpa.org/packages/"))))

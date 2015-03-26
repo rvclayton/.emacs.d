@@ -15,7 +15,8 @@
      (list
        (expand-file-name (concat my-mail-dir "/hcoop-incoming"))
        (expand-file-name (concat my-mail-dir "/incoming"))
-       (concat "/var/mail/" (user-login-name))))
+       (concat "/var/mail/" (user-login-name))
+       (concat "/var/spool/mail/" (user-login-name))))
 
     (let ((month (substring (downcase (current-time-string)) 4 7)))
       (setq mail-archive-file-name (concat my-mail-dir "/" month ".out"))
