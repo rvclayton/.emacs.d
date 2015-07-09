@@ -94,7 +94,7 @@
 
 ; haskell
 
-  (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+  (add-to-list 'auto-mode-alist '("\\.l?hs$" . haskell-mode))
   (autoload 'haskell-mode "haskell-mode" "Go into haskell mode" t)
 
   (add-hook 'haskell-mode-hook
@@ -242,11 +242,15 @@
 
 ; paredit
 
-  ; get paredit from http://mumble.net/~campbell/emacs/paredit.el
+  ; defined to be called in anothr mode's on-hook.
 
   (defun go-paredit ()
     (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
     (enable-paredit-mode)
+    (local-set-key "\C-cpll" 'paredit-backward-slurp-sexp)
+    (local-set-key "\C-cprr" 'paredit-forward-slurp-sexp)
+    (local-set-key "\C-cprl" 'paredit-forward-barf-sexp)
+    (local-set-key "\C-cplr" 'paredit-backward-barf-sexp)
     (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
 
