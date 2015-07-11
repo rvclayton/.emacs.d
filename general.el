@@ -315,7 +315,9 @@
         (defvar quack-default-program "guile"))
       (setq fill-column 79)
       (local-set-key "\e\C-l" 'goto-line)
-      (go-paredit)))
+      (go-paredit)
+      (require 'quack)
+      (quack-install)))
 
 
 ; tcl
