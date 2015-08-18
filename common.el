@@ -281,4 +281,5 @@
   (when (or (>= emacs-major-version 24) (require-or-print 'package))
     (package-initialize)
     (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	  '(("melpa-stable" . "http://stable.melpa.org/packages/"))))
+	  '(("melpa-stable" . "http://stable.melpa.org/packages/")
+	    ("elpa" . "http://elpa.gnu.org/packages/"))))
