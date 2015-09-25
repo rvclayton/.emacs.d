@@ -4,6 +4,7 @@ elpa
 *.elc
 url
 tramp
+tutorial
 ac-comphist.dat
 .mc-lists.el
 .org-id-locations
