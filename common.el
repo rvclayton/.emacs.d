@@ -212,8 +212,7 @@
   ; it's fixed.
 
   (if (not (executable-find "aspell"))
-    (defvar do-flyspell-mode 0)
-    (defvar do-flyspell-mode 1)
+    (defvar do-flyspell-mode 1) ; positive yes, otherwise no
     (defvar ispell-program-name "aspell")
     (defvar ispell-extra-args   '("--sug-mode=ultra")))
 
