@@ -208,11 +208,12 @@
 
 ; flyspell
 
-  ; sometimes flyspell freaks out, and it should be turned off (set to 0) until
-  ; it's fixed.
+  ; sometimes flyspell freaks out, and it should be turned off (set
+  ; non-positive) until it's fixed.
 
   (if (not (executable-find "aspell"))
-    (defvar do-flyspell-mode 1) ; positive yes, otherwise no
+    (defvar do-flyspell-mode -1) ; no aspell, no flyspell mode.
+    (defvar do-flyspell-mode 1)
     (defvar ispell-program-name "aspell")
     (defvar ispell-extra-args   '("--sug-mode=ultra")))
 
