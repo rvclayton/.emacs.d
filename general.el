@@ -106,6 +106,7 @@
       (define-key haskell-mode-map "\C-c\C-g" 'goto-line)
       (turn-on-font-lock)
       (turn-on-haskell-doc-mode)
+      (turn-on-haskell-simple-indent)
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
 	   (concat "ghc " (file-name-nondirectory buffer-file-name) 
@@ -167,10 +168,22 @@
 	     (delete-window (get-buffer-window (get-buffer "*compilation*"))))
 	   (cons msg code)))))
 
-; javascript
+
+; javascript & typescript
+
+  (add-to-list 'auto-mode-alist '("\.[tj]s$" . javascript-mode))
 
   (add-hook 'js-mode-hook
-    (lambda () (load "js-utils")))
+    (lambda ()
+      (load "js-utils")
+      (when (string-match "\.ts$" buffer-file-name)
+	(local-set-key "\e\C-l" 'goto-line)
+	(local-set-key "\M-c" 'compile)
+        (set (make-local-variable 'compile-command)
+          (let ((filename (file-name-nondirectory buffer-file-name)))
+	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
+	      (concat "make " (file-name-sans-extension filename) ".js")
+	      (concat "tsc " filename)))))))
 
 
 ; makefile
@@ -414,6 +427,11 @@
       (add-hook 'twitter-timeline-view-mode-hook
         (lambda ()
 	  (local-set-key "\C-c\C-u" 'twitter-get-friends-timeline)))))
+
+
+; typescript
+
+  ; see javascript
 
 
 ; version control
