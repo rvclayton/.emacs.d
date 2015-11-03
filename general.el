@@ -179,6 +179,7 @@
       (when (string-match "\.ts$" buffer-file-name)
 	(local-set-key "\e\C-l" 'goto-line)
 	(local-set-key "\M-c" 'compile)
+	(load "ts-utils")
         (set (make-local-variable 'compile-command)
           (let ((filename (file-name-nondirectory buffer-file-name)))
 	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
