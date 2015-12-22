@@ -171,7 +171,7 @@
 
 ; javascript & typescript
 
-  (add-to-list 'auto-mode-alist '("\.[tj]s$" . javascript-mode))
+  (add-to-list 'auto-mode-alist '("\\.[tj]s$" . javascript-mode))
 
   (add-hook 'js-mode-hook
     (lambda ()
