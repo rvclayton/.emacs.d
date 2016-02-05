@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: html_symbol(...)
+# key: symmac
+# --
+html_symbol($1)$0
