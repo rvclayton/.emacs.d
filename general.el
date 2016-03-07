@@ -1,7 +1,7 @@
 ; antlr
 
   (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
-  (add-to-list 'auto-mode-alist '("\\.g\\'" . antlr-mode))
+  (add-to-list 'auto-mode-alist '("\\.g4" . antlr-mode))
 
 
 ; c
