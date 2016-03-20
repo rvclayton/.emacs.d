@@ -273,13 +273,24 @@
      "Face used to dim noise characters.")
 
 
-; packages
+; package management
+
+  ; see www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
+  ; for details.
 
   ; ("marmalade" . "http://marmalade-repo.org/packages/")
   ; replaced by melpa-stable
 
-  (when (or (>= emacs-major-version 24) (require-or-print 'package))
-    (package-initialize)
-    (mapc (lambda (p) (add-to-list 'package-archives p)) 
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (mapc (lambda (p) (add-to-list 'package-archives p)) 
 	  '(("melpa-stable" . "http://stable.melpa.org/packages/")
-	    ("elpa" . "http://elpa.gnu.org/packages/"))))
+	    ("elpa" . "http://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+
+  ; Bootstrap `use-package'
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
