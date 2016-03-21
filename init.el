@@ -24,5 +24,5 @@
  '(w3m-anchor ((((class color) (background dark)) (:foreground "yellow")) (((class color) (background light)) (:foreground "yellow"))))
  '(w3m-arrived-anchor ((((class color) (background dark)) (:foreground "cyan")) (((class color) (background light)) (:foreground "cyan")))))
 
-(load "~rclayton/.emacs.d/common")
-(load "~rclayton/.emacs.d/general")
+(load "~rclayton/.emacs.d/common.el")
+(load "~rclayton/.emacs.d/general.el")

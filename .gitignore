@@ -1,9 +1,11 @@
+abbrev_defs
 auto-save-list
 javadoc-cache
 elpa
 *.elc
 url
 tramp
+tutorial
 ac-comphist.dat
 .mc-lists.el
 .org-id-locations

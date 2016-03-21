@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: html symbol
+# key: hsym
+# --
+html_symbol($1)$0

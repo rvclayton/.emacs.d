@@ -1,7 +1,7 @@
 ; antlr
 
   (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
-  (add-to-list 'auto-mode-alist '("\\.g\\'" . antlr-mode))
+  (add-to-list 'auto-mode-alist '("\\.g4" . antlr-mode))
 
 
 ; c
@@ -106,6 +106,7 @@
       (define-key haskell-mode-map "\C-c\C-g" 'goto-line)
       (turn-on-font-lock)
       (turn-on-haskell-doc-mode)
+      (turn-on-haskell-simple-indent)
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
 	   (concat "ghc " (file-name-nondirectory buffer-file-name) 
@@ -167,10 +168,22 @@
 	     (delete-window (get-buffer-window (get-buffer "*compilation*"))))
 	   (cons msg code)))))
 
-; javascript
+
+; javascript & typescript
+
+  (add-to-list 'auto-mode-alist '("\\.[tj]s$" . javascript-mode))
 
   (add-hook 'js-mode-hook
-    (lambda () (load "js-utils")))
+    (lambda ()
+      (load "js-utils")
+      (when (string-match "\.ts$" buffer-file-name)
+	(load "ts-utils")
+	(local-set-key "\M-c" 'compile)
+        (set (make-local-variable 'compile-command)
+          (let ((filename (file-name-nondirectory buffer-file-name)))
+	    (if (or (file-exists-p "makefile") (file-exists-p "Makefile"))
+	      (concat "make " (file-name-sans-extension filename) ".js")
+	      (concat "tsc " filename)))))))
 
 
 ; makefile
@@ -241,9 +254,17 @@
 	  (insert (format-time-string "%Y %h %d"))))))
     
 
+; packages
+
+  ; Because pkgs.el calls use-package, it can't be compiled (or I don't know how to
+  ; compile it).
+
+  (load "~rclayton/.emacs.d/pkgs.el")
+
+
 ; paredit
 
-  ; defined to be called in anothr mode's on-hook.
+  ; defined to be called in another mode's on-hook.
 
   (defun go-paredit ()
     (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -306,7 +327,7 @@
 
 ; scheme
 
-  (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?)\\|rkt$" . scheme-mode))
+  (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
 
   ; get quack.el from http://www.neilvandyke.org/quack/quack.el
 
@@ -319,6 +340,12 @@
       (go-paredit)
       (require 'quack)
       (quack-install)))
+
+
+; skribilo (skribe)
+
+  (autoload 'skribe-mode "skribe" "minor mode for skribilo code." t)
+  (add-to-list 'auto-mode-alist '("\\.skr$" . skribe-mode))
 
 
 ; tcl
@@ -416,6 +443,11 @@
 	  (local-set-key "\C-c\C-u" 'twitter-get-friends-timeline)))))
 
 
+; typescript
+
+  ; see javascript
+
+
 ; version control
 
     (setq vc-handled-backends '(RCS GIT))
@@ -488,8 +520,3 @@
      '(lambda ()
         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))) 
 
-
-; yasnippet
-
-  (require-or-print 'yasnippet)
-  (yas-global-mode 1)

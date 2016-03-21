@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: IncludeImage(..., ...)
+# key: imgmac
+# --
+IncludeImage($1, `$2')$0

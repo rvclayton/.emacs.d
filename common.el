@@ -46,12 +46,7 @@
 
    (setq load-path 
      (filter-non-directories 
-       (append '("~/local/lib/emacs"
-		 "~/local/share/emacs"
-		 "~/local/share/emacs/site-lisp"
-		 "~/local/share/emacs/site-lisp/w3m"
-		 "~/local/share/mdk"
-		 "~/lib/emacs/lisp"
+       (append '("~/lib/emacs/lisp"
 		 "/usr/local/share/emacs/site-lisp/scala-mode"
 		 "/usr/share/emacs/site-lisp/haskell-mode"
 		 "/usr/share/emacs/site-lisp/eieio"
@@ -208,11 +203,11 @@
 
 ; flyspell
 
-  ; sometimes flyspell freaks out, and it should be turned off (set to 0) until
-  ; it's fixed.
+  ; sometimes flyspell freaks out, and it should be turned off (set
+  ; non-positive) until it's fixed.
 
   (if (not (executable-find "aspell"))
-    (defvar do-flyspell-mode 0)
+    (defvar do-flyspell-mode -1) ; no aspell, no flyspell mode.
     (defvar do-flyspell-mode 1)
     (defvar ispell-program-name "aspell")
     (defvar ispell-extra-args   '("--sug-mode=ultra")))
@@ -273,13 +268,25 @@
      "Face used to dim noise characters.")
 
 
-; packages
+; package management
+
+  ; see www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
+  ; for details.
 
   ; ("marmalade" . "http://marmalade-repo.org/packages/")
   ; replaced by melpa-stable
 
-  (when (or (>= emacs-major-version 24) (require-or-print 'package))
-    (package-initialize)
-    (mapc (lambda (p) (add-to-list 'package-archives p)) 
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (mapc (lambda (p) (add-to-list 'package-archives p)) 
 	  '(("melpa-stable" . "http://stable.melpa.org/packages/")
-	    ("elpa" . "http://elpa.gnu.org/packages/"))))
+	    ("elpa" . "http://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+
+  ; Bootstrap use-package
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: defdef(...)
+# key: defmac
+# --
+defdef($1)$0

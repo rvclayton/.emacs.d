@@ -4,6 +4,7 @@
 
 go	: $(addsuffix .elc, init common gnus-init rmail-init general)
 
-init.elc	: common.elc
+init.elc	: common.elc general.elc
+general.elc	: common.elc
 rmail-init.elc	: common.elc
 gnus-init.elc	: common.elc
