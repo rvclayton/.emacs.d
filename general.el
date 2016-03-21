@@ -254,9 +254,26 @@
 	  (insert (format-time-string "%Y %h %d"))))))
     
 
+; packages
+
+  ; yasnippet
+
+    (use-package yasnippet
+      :ensure t
+      :diminish yas-minor-mode
+      :config
+	(yas-global-mode)
+	(add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
+	(setq yas-key-syntaxes '("w_" "w_." "^ "))
+	(setq yas-expand-only-for-last-commands nil)
+	(yas-global-mode 1)
+	(bind-key "\t" 'hippie-expand yas-minor-mode-map)
+	(add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt))
+
+
 ; paredit
 
-  ; defined to be called in anothr mode's on-hook.
+  ; defined to be called in another mode's on-hook.
 
   (defun go-paredit ()
     (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -319,7 +336,7 @@
 
 ; scheme
 
-  (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?)\\|rkt$" . scheme-mode))
+  (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
 
   ; get quack.el from http://www.neilvandyke.org/quack/quack.el
 
@@ -332,6 +349,12 @@
       (go-paredit)
       (require 'quack)
       (quack-install)))
+
+
+; skribilo (skribe)
+
+  (autoload 'skribe-mode "skribe" "minor mode for skribilo code." t)
+  (add-to-list 'auto-mode-alist '("\\.skr$" . skribe-mode))
 
 
 ; tcl
@@ -506,8 +529,3 @@
      '(lambda ()
         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))) 
 
-
-; yasnippet
-
-  (require-or-print 'yasnippet)
-  (yas-global-mode 1)
