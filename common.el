@@ -46,12 +46,8 @@
 
    (setq load-path 
      (filter-non-directories 
-       (append '("~/local/lib/emacs"
-		 "~/local/share/emacs"
-		 "~/local/share/emacs/site-lisp"
-		 "~/local/share/emacs/site-lisp/w3m"
-		 "~/local/share/mdk"
-		 "~/lib/emacs/lisp"
+       (append '("~/lib/emacs/lisp"
+		 "~/.emacs.d/"
 		 "/usr/local/share/emacs/site-lisp/scala-mode"
 		 "/usr/share/emacs/site-lisp/haskell-mode"
 		 "/usr/share/emacs/site-lisp/eieio"
