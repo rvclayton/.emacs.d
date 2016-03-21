@@ -256,19 +256,10 @@
 
 ; packages
 
-  ; yasnippet
+  ; Because pkgs.el calls use-package, it can't be compiled (or I don't know how to
+  ; compile it).
 
-    (use-package yasnippet
-      :ensure t
-      :diminish yas-minor-mode
-      :config
-	(yas-global-mode)
-	(add-hook 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
-	(setq yas-key-syntaxes '("w_" "w_." "^ "))
-	(setq yas-expand-only-for-last-commands nil)
-	(yas-global-mode 1)
-	(bind-key "\t" 'hippie-expand yas-minor-mode-map)
-	(add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt))
+  (load "pkgs.el")
 
 
 ; paredit
