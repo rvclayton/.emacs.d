@@ -259,7 +259,7 @@
   ; Because pkgs.el calls use-package, it can't be compiled (or I don't know how to
   ; compile it).
 
-  (load "pkgs.el")
+  (load "~rclayton/.emacs.d/pkgs.el")
 
 
 ; paredit
