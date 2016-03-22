@@ -96,6 +96,12 @@
   (defvar yow-file "~/lib/emacs/lisp/yow.lines")
 
 
+; what kind of emacs is this?
+
+  (require 'general-utils)
+  (defconst emacs-major-version (genutl:emacs-major-version))
+
+
 ; parens matching
 
   (let ((w 'paredit))
@@ -270,23 +276,26 @@
 
 ; package management
 
-  ; see www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
-  ; for details.
+  (cond
+    ((= emacs-major-version 24)
 
-  ; ("marmalade" . "http://marmalade-repo.org/packages/")
-  ; replaced by melpa-stable
+      ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
+      ; at www.lunaryorn.com
 
-  (require 'package)
-  (setq package-enable-at-startup nil)
-  (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	  '(("melpa-stable" . "http://stable.melpa.org/packages/")
-	    ("elpa" . "http://elpa.gnu.org/packages/")))
+      ; ("marmalade" . "http://marmalade-repo.org/packages/")
+      ; replaced by melpa-stable
 
-  (package-initialize)
+      (require-or-print 'package)
+      (setq package-enable-at-startup nil)
+      (mapc (lambda (p) (add-to-list 'package-archives p)) 
+	    '(("melpa-stable" . "http://stable.melpa.org/packages/")
+	      ("elpa" . "http://elpa.gnu.org/packages/")))
 
-  ; Bootstrap use-package
+      (package-initialize)
 
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
+      ; Bootstrap use-package
+
+      (unless (package-installed-p 'use-package)
+	(package-refresh-contents)
+	(package-install 'use-package))))
 
