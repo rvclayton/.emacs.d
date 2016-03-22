@@ -43,7 +43,7 @@
 
 ; cmu shell.
 
-   (autoload 'cmushell "cmushell" "Run an inferior shell process." t)
+  (autoload 'cmushell "cmushell" "Run an inferior shell process." t)
 
 
 ; compile on save mode
@@ -256,10 +256,10 @@
 
 ; packages
 
-  ; Because pkgs.el calls use-package, it can't be compiled (or I don't know how to
-  ; compile it).
-
-  (load "~rclayton/.emacs.d/pkgs.el")
+  (when (> emacs-major-version 23)
+    ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
+    ; how to compile it).
+    (load "~rclayton/.emacs.d/pkgs.el"))
 
 
 ; paredit
