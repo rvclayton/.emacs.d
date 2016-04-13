@@ -1,0 +1,6 @@
+use-package fields:
+
+  :init   code executed before package load.
+  :config code executed after package load.
+
+https://github.com/jwiegley/use-package
