@@ -1,5 +1,15 @@
 (require 'use-package)
 
+
+(use-package avy
+  :ensure t
+  :init
+    (global-set-key (kbd "M-C-j") nil)
+  :bind (("M-C-j 1" . avy-goto-word-1)
+	 ("M-C-j 2" . avy-goto-word-2)
+	 ("M-C-j l" . avy-goto-line)
+	 ))
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
