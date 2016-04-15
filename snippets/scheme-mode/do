@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: do loop
+# key: do
+# --
+(do ((${1:var} ${2:init} ${3:step})) (${4:stop} ${5:return})
+  $0)
