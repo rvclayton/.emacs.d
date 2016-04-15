@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: html 5 skeleton
+# key: html5
+# --
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>$0</title>
+  </head>
+
+  <body>
+  </body>
+
+</html>
+
