@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: slidy 2 css and js files.
+# key: slidy
+# --
+<link
+  rel	= "stylesheet"
+  type	= "text/css"
+  media = "screen, projection, print" 
+  href	= "http://www.w3.org/Talks/Tools/Slidy2/slidy.css"
+  /> 
+<script
+  src  = "http://www.w3.org/Talks/Tools/Slidy2/slidy.js" 
+  type = "text/javascript"
+  >
+</script> 
