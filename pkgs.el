@@ -5,8 +5,8 @@
   :ensure t
   :init
     (global-set-key (kbd "M-C-j") nil)
-  :bind (("M-C-j 1" . avy-goto-word-1)
-	 ("M-C-j 2" . avy-goto-word-2)
+  :bind (("M-C-j c" . avy-goto-char-2)
+	 ("M-C-j w" . avy-goto-word-1)
 	 ("M-C-j l" . avy-goto-line)
 	 ))
 
@@ -20,4 +20,5 @@
     (setq yas-expand-only-for-last-commands nil)
     (yas-global-mode 1)
     (bind-key "\t" 'hippie-expand yas-minor-mode-map)
-    (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt))
+    (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt)
+    (load "expansion-cursor-indicator"))
