@@ -1,6 +1,5 @@
 (require 'use-package)
 
-
 (use-package avy
   :ensure t
   :init
@@ -9,6 +8,10 @@
 	 ("M-C-j w" . avy-goto-word-1)
 	 ("M-C-j l" . avy-goto-line)
 	 ))
+
+(use-package geiser
+  :mode "\\.(scm\\|rkt)\\$"
+  )
 
 (use-package yasnippet
   :ensure t
