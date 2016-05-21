@@ -48,6 +48,7 @@
      (filter-non-directories 
        (append '("~rclayton/lib/emacs/lisp"
 		 "~rclayton/.emacs.d/lib"
+		 "~rclayton/lib/emacs/nocvs/emacs-w3m/pkg/share/emacs/site-lisp/w3m"
 		 "/usr/local/share/emacs/site-lisp/scala-mode"
 		 "/usr/share/emacs/site-lisp/haskell-mode"
 		 "/usr/share/emacs/site-lisp/eieio"
@@ -190,11 +191,24 @@
 			     current-prefix-arg
 			     shell-command-default-error-buffer))
 
-   (defun require-or-print (sym)
-     (if (require sym nil t)
+  (defun require-or-print (sym)
+    (if (require sym nil t)
        t
        (message "!! %s require failed" sym)
        nil))
+
+  (defun go-paredit ()
+
+    ; defined to be called in another mode's on-hook.
+
+    (autoload 'enable-paredit-mode "paredit"
+      "Turn on pseudo-structural editing of Lisp code." t)
+    (enable-paredit-mode)
+    (local-set-key "\C-cpll" 'paredit-backward-slurp-sexp)
+    (local-set-key "\C-cprr" 'paredit-forward-slurp-sexp)
+    (local-set-key "\C-cprl" 'paredit-forward-barf-sexp)
+    (local-set-key "\C-cplr" 'paredit-backward-barf-sexp)
+    (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
    (global-set-key "\e\e" nil)
    (global-set-key "\M-\C-r" 'query-replace-regexp)

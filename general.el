@@ -262,20 +262,6 @@
     (load "~rclayton/.emacs.d/pkgs.el"))
 
 
-; paredit
-
-  ; defined to be called in another mode's on-hook.
-
-  (defun go-paredit ()
-    (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-    (enable-paredit-mode)
-    (local-set-key "\C-cpll" 'paredit-backward-slurp-sexp)
-    (local-set-key "\C-cprr" 'paredit-forward-slurp-sexp)
-    (local-set-key "\C-cprl" 'paredit-forward-barf-sexp)
-    (local-set-key "\C-cplr" 'paredit-backward-barf-sexp)
-    (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
-
-
 ; processing
 
   ; Don't forget to add the processing-mode package.
@@ -414,35 +400,6 @@
        (load "gts.el" )))
 
    
-; twitter
-
-  (cond
-    (t ; twittering-mode.el
-      (when (require-or-print 'twittering-mode)
-	(setq twittering-use-master-password t)))
-
-    (nil ; ublog.el
-      (require 'ublog))
-
-    (nil ; twitter.el
-      (autoload 'twitter-get-friends-timeline "twitter" nil t)
-      (autoload 'twitter-status-edit "twitter" nil t)
-      (global-set-key "\C-xt" 'twitter-get-friends-timeline)
-      (add-hook 'twitter-status-edit-mode-hook 'longlines-mode)
-      (add-hook 'twitter-timeline-view-mode-hook
-        (lambda ()
-	  (local-set-key "\C-c\C-u" 'twitter-get-friends-timeline))))
-
-    (nil ; twitel.el
-      (autoload 'twitel-get-friends-timeline "twitel" nil t)
-      (autoload 'twitel-status-edit "twitel" nil t)
-      (global-set-key "\C-xt" 'twitel-get-friends-timeline)
-      (add-hook 'twitel-status-edit-mode-hook 'longlines-mode)
-      (add-hook 'twitter-timeline-view-mode-hook
-        (lambda ()
-	  (local-set-key "\C-c\C-u" 'twitter-get-friends-timeline)))))
-
-
 ; typescript
 
   ; see javascript
