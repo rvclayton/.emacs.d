@@ -1,6 +1,9 @@
 use-package fields:
 
-  :init   code executed before package load.
-  :config code executed after package load.
+  :ensure 
+  :init        code executed before package load.
+  :config      code executed after package load.
+  :mode        files triggering this package.
+  :interpreter interpreters triggering this package.
 
 https://github.com/jwiegley/use-package
