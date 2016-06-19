@@ -9,8 +9,17 @@
 	 ("M-C-j l" . avy-goto-line)
 	 ))
 
+(use-package dart-mode
+  :ensure t
+  :mode "\\.drt$"
+  :config
+    (setq dart-enable-analysis-server t)
+    (add-hook 'dart-mode-hook 'flycheck-mode)
+  )
+
 (use-package geiser
-  :mode "\\.(scm\\|rkt)\\$"
+  :ensure t
+  :mode "\\.(scm\\|rkt)$"
   )
 
 (use-package yasnippet
