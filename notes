@@ -1,6 +1,6 @@
 use-package fields:
 
-  :ensure 
+  :ensure      install package automatically if needed.
   :init        code executed before package load.
   :config      code executed after package load.
   :mode        files triggering this package.
