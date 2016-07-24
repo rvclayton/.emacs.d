@@ -13,6 +13,33 @@
   (put 'upcase-region 'disabled nil)
   (setq initial-scratch-message nil)
 
+
+  (defun cut-string ()
+
+   ; Copy the string containing point into the cut buffer.  Strings can be
+   ; delimited by ' or ", the same at both ends.
+
+    (interactive)
+    
+    ; This code sucks.
+    ;  - doesn't match string delimiters, 'hi"
+    ;  - doesn't handle escaped delimiters within the string, 'isn\'t'
+    ;  - should generalize delimiters to the usual matched pairs, [hi]
+    
+    (save-excursion
+      (let (start)
+
+	(unless (re-search-backward "['\"]" nil nil)
+	  (error "Can't find the starting string delimiter"))
+	(forward-char 1)
+	(setq start (point))
+
+	(unless (re-search-forward "['\"]" nil nil)
+	  (error "Can't find the ending string delimiter"))
+	(forward-char -1)
+	(kill-ring-save start (point)))))
+
+
   (defun filter-non-directories (lst)
     (let ((drs '()))
       (mapc 
