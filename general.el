@@ -366,8 +366,9 @@
 	(local-set-key "\M-g" 'fill-region-and-align)
 	(load "par-align" t t)
 	(flyspell-mode do-flyspell-mode)
-      )
-  )
+	(when (boundp 'its-all-text!)
+	  (auto-fill-mode -1)
+	  (visual-line-mode))))
 
   (add-hook 'tex-mode-hook
     (lambda ()
