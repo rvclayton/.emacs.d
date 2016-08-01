@@ -11,7 +11,7 @@
 
 (use-package dart-mode
   :ensure t
-  :mode "\\.drt$"
+  :mode "\\.da?rt$"
   :config
     (setq dart-enable-analysis-server t)
     (add-hook 'dart-mode-hook 'flycheck-mode)
