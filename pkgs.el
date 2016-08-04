@@ -22,6 +22,11 @@
   :mode "\\.(scm\\|rkt)$"
   )
 
+(use-package google-this
+  :ensure t
+  :config
+    (google-this-mode 1))
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
