@@ -14,9 +14,9 @@
   (setq initial-scratch-message nil)
 
 
-  (defun cut-string ()
+  (defun copy-string ()
 
-   ; Copy the string containing point into the cut buffer.  Strings can be
+   ; Copy the string containing point into the kill ring.  Strings can be
    ; delimited by ' or ", the same at both ends.
 
     (interactive)
