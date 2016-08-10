@@ -28,6 +28,12 @@
   :config
     (google-this-mode 1))
 
+(use-package ido
+  :ensure t
+  :config
+    (ido-mode t)
+    (setq ido-enable-flex-matching t))
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
