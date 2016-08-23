@@ -20,6 +20,9 @@
 (use-package geiser
   :ensure t
   :mode "\\.(scm\\|rkt)$"
+  :config
+    (when (string-match "\.rkt$" (buffer-file-name))
+      (setq geiser-active-implementations '(racket)))
   )
 
 (use-package google-this
