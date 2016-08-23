@@ -23,6 +23,7 @@
   :config
     (when (string-match "\.rkt$" (buffer-file-name))
       (setq geiser-active-implementations '(racket)))
+    (setq geiser-repl-startup-time 5000)
   )
 
 (use-package google-this
