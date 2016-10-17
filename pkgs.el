@@ -24,6 +24,7 @@
     (when (string-match "\.rkt$" (buffer-file-name))
       (setq geiser-active-implementations '(racket)))
     (setq geiser-repl-startup-time 5000)
+    (require 'quack)
   )
 
 (use-package google-this
