@@ -16,6 +16,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(button ((t (:inherit header\ line))))
+ '(cursor ((t (:background "gold"))))
  '(custom-comment-tag ((t (:foreground "white"))))
  '(custom-link ((t (:inherit underline))))
  '(custom-visibility ((t (:inherit underline :height 0.8))))
