@@ -1,13 +1,17 @@
 (require 'use-package)
 
-(use-package avy
+(use-package ace-window
   :ensure t
   :init
     (global-set-key (kbd "M-C-j") nil)
+  :config
+    (global-set-key (kbd "M-C-j b") 'ace-window))
+
+(use-package avy
+  :ensure t
   :bind (("M-C-j c" . avy-goto-char-2)
 	 ("M-C-j w" . avy-goto-word-1)
-	 ("M-C-j l" . avy-goto-line)
-	 ))
+	 ("M-C-j l" . avy-goto-line)))
 
 (use-package dart-mode
   :ensure t
@@ -38,6 +42,12 @@
   :config
     (ido-mode t)
     (setq ido-enable-flex-matching t))
+
+(use-package which-key
+  :ensure t
+  :config
+    (which-key-mode))
+
 
 (use-package yasnippet
   :ensure t
