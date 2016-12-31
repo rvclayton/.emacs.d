@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: meta-description
+# key: mdesc
+# --
+<meta name="description" content="$0">

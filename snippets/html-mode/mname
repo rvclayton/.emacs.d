@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: meta-name
+# key: mname
+# --
+<meta name="name" content="$0">

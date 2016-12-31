@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: lexb
+# key: lexb
+# --
+; -*- mode: emacs-lisp; lexical-binding: t -*-
+

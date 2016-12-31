@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: html 5 script inclusion.
+# key: scpt
+# --
+<script src="$1"></script>$0
