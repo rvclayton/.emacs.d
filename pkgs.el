@@ -43,6 +43,11 @@
     (ido-mode t)
     (setq ido-enable-flex-matching t))
 
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.(md\\|markdown)$"
+  )
+
 (use-package which-key
   :ensure t
   :config
