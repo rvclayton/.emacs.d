@@ -2,13 +2,13 @@
 
 (use-package ace-window
   :ensure t
-  :init
-    (global-set-key (kbd "M-C-j") nil)
   :config
-    (global-set-key (kbd "M-C-j b") 'ace-window))
+    (global-set-key (kbd "C-x o") 'ace-window))
 
 (use-package avy
   :ensure t
+  :init
+    (global-set-key (kbd "M-C-j") nil)
   :bind (("M-C-j c" . avy-goto-char-2)
 	 ("M-C-j w" . avy-goto-word-1)
 	 ("M-C-j l" . avy-goto-line)))
