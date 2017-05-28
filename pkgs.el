@@ -31,11 +31,13 @@
     (require 'quack)
   )
 
+
 (use-package google-this
   :ensure t
   :diminish google-this-mode
   :config
     (google-this-mode 1))
+
 
 (use-package ido
   :ensure t
@@ -43,10 +45,14 @@
     (ido-mode t)
     (setq ido-enable-flex-matching t))
 
+
 (use-package markdown-mode
   :ensure t
-  :mode "\\.(md\\|markdown)$"
+  :commands (markdown-mode gfm-mode)
+  :mode (("\\.(md\\|markdown)$" . markdown-mode)
+	 ("README\\.md$" . gfm-mode))
   )
+
 
 (use-package which-key
   :ensure t
