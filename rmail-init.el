@@ -62,7 +62,7 @@
 	(define-key rmail-mode-map "\e." 'fill-paragraph)
 	(add-hook 'rmail-show-message-hook 'mail-delete-nesting)
 	(setq rmail-confirm-expunge nil))
-
+        (setq rmail-mime-prefer-html nil)
 	(defadvice rmail-summary
 	  (after shrink-summary-buffer activate)
 	  "Shrink the summary buffer if it's about half the frame height and the unshrunk size is larger than the shrunk size."
