@@ -25,26 +25,42 @@
 ;;; Code:
 
 
-(defun antlr:insert-colon ()
+; 
 
-  (interactive)
+  (defun antlr:insert-colon ()
 
-  (let ((pat "^[a-zA-Z]+"))
+    (interactive)
 
-    (cond
-      ((looking-back pat)
-         (insert "\n  : \n  ;\n")
-	 (when (looking-at pat)
-	   (insert "\n")
-	   (forward-line -1))
-	 (forward-line -1)
-	 (forward-char -1))
+    (let ((pat "^[_ a-zA-Z]+"))
 
-      (t
-         (insert ":")))))
+      (cond
+	((looking-back pat)
+	   (insert "\n  : \n  ;\n")
+	   (when (looking-at pat)
+	     (insert "\n")
+	     (forward-line -1))
+	   (forward-line -1)
+	   (forward-char -1))
+
+	(t
+	   (insert ":")))))
 
 
-(define-key antlr-mode-map ":" 'antlr:insert-colon)
+  (define-key antlr-mode-map ":" 'antlr:insert-colon)
+
+
+; Run the current buffer through antlr
+
+  (set (make-local-variable 'compile-command)
+    (concat
+      "a4 "
+      (if buffer-file-name
+        (shell-quote-argument
+	  (file-name-nondirectory buffer-file-name)))))
+
+  (set (make-local-variable 'compilation-read-command) nil)
+
+  (define-key antlr-mode-map (kbd "M-c") 'compile)
 
 
 (provide 'antlr-mode-defs)
