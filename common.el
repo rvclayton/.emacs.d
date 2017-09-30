@@ -315,17 +315,7 @@
   (cond
     ((= emacs-major-version 24)
 
-      ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
-      ; at www.lunaryorn.com
-
-      ; ("marmalade" . "http://marmalade-repo.org/packages/")
-      ; replaced by melpa-stable
-
       (require-or-print 'package)
-      (setq package-enable-at-startup nil)
-      (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	    '(("melpa-stable" . "http://stable.melpa.org/packages/")
-	      ("elpa" . "http://elpa.gnu.org/packages/")))
 
       (package-initialize)
 
@@ -335,3 +325,14 @@
 	(package-refresh-contents)
 	(package-install 'use-package))))
 
+  ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
+  ; at www.lunaryorn.com
+
+  (setq package-enable-at-startup nil)
+
+  ; ("marmalade" . "http://marmalade-repo.org/packages/")
+  ; replaced by melpa-stable
+
+  (mapc (lambda (p) (add-to-list 'package-archives p)) 
+	'(("melpa-stable" . "http://stable.melpa.org/packages/")
+	  ("elpa" . "http://elpa.gnu.org/packages/")))
