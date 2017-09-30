@@ -61,7 +61,7 @@
 	(NoBackupMode)
 	(define-key rmail-mode-map "\e." 'fill-paragraph)
 	(add-hook 'rmail-show-message-hook 'mail-delete-nesting)
-	(setq rmail-confirm-expunge nil))
+	(setq rmail-confirm-expunge nil)
         (setq rmail-mime-prefer-html nil)
 	(defadvice rmail-summary
 	  (after shrink-summary-buffer activate)
@@ -71,4 +71,4 @@
 	      (let ((h-min 8)
 		    (h-lns (window-height)))
 		(when (< h-min h-lns)
-		  (enlarge-window (- h-min h-lns))))))))
+		  (enlarge-window (- h-min h-lns)))))))))
