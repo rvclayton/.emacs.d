@@ -206,19 +206,6 @@
   (add-to-list 'auto-mode-alist '("/var/log/messages" . auto-revert-tail-mode))
 
 
-; multiple cursors
-
-  ; clone from https://github.com/magnars/multiple-cursors.el.git
-
-  (when (require-or-print 'multiple-cursors)
-    (global-set-key (kbd "C-c mca") 'mc/mark-all-like-this)
-    (global-set-key (kbd "C-c mce") 'mc/edit-lines)
-    (global-set-key (kbd "C-c mcn") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-c mcp") 'mc/mark-previous-like-this)
-    (global-unset-key (kbd "M-<down-mouse-1>"))
-    (global-set-key (kbd "M-<down-mouse-1>") 'mc/add-cursor-on-click))
-
-
 ; no web.
 
   (autoload 'noweb-mode "noweb-mode" "Editing noweb files." t)
