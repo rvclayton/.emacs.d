@@ -131,22 +131,6 @@
   (defconst emacs-major-version (genutl:emacs-major-version))
 
 
-; parens matching
-
-  (let ((w 'paredit))
-    (cond 
-
-      ((eq w 'paredit)
-        (setq show-paren-delay 0)
-        (show-paren-mode t)
-        (setq show-paren-style 'mixed)) ; also 'parenthesis or 'expression
-
-      ((eq w 'rainbow-delimiters)
-       (when (require 'rainbow-delimiters nil 'noerror) 
-	 (mapc (lambda (m) (add-hook m 'rainbow-delimiters-mode))
-	      '(scheme-mode-hook java-mode-hook))))))
-
-
 ; uniqify buffer names
 
   (require 'uniquify)

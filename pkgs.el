@@ -62,6 +62,14 @@
   )
 
 
+(use-package paredit
+  :ensure t
+  :config
+    (setq show-paren-delay 0)
+    (show-paren-mode t)
+    (setq show-paren-style 'mixed)) ; also 'parenthesis or 'expression
+
+
 (use-package which-key
   :ensure t
   :config
