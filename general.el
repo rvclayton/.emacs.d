@@ -150,6 +150,8 @@
        (c-set-offset 'func-decl-cont 0 nil)
        (c-set-offset 'statement-case-intro 2 nil)
 
+       (electric-pair-local-mode)
+       
        (load "java-mode-defs" nil t)
        (set-variable 'fill-column 79)
        (setq dabbrev-case-fold-search nil)
