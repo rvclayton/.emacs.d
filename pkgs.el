@@ -88,3 +88,8 @@
     (bind-key "\t" 'hippie-expand yas-minor-mode-map)
     (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt)
     (load "expansion-cursor-indicator"))
+
+
+(use-package yasnippet-snippets
+  :after yasnippet
+  :config (yasnippet-snippets-initialize))
