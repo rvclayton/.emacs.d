@@ -29,14 +29,19 @@
   )
 
 
+; get quack.el from http://www.neilvandyke.org/quack/quack.el or from the
+; emacs-goodies debian package.
+
 (use-package geiser
   :ensure t
   :mode "\\.(scm\\|rkt)$"
   :config
-    (when (string-match "\.rkt$" (buffer-file-name))
-      (setq geiser-active-implementations '(racket)))
-    (setq geiser-repl-startup-time 5000)
     (require 'quack)
+    (quack-install)
+    (when (string-match "\.rkt$" (buffer-file-name))
+      (setq geiser-active-implementations '(racket))
+      (defvar quack-default-program "racket"))
+    (setq geiser-repl-startup-time 5000)
   )
 
 
