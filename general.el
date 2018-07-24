@@ -299,17 +299,11 @@
 
   (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
 
-  ; get quack.el from http://www.neilvandyke.org/quack/quack.el
-
   (add-hook 'scheme-mode-hook
     (lambda ()
-      (when (require-or-print 'quack)
-        (defvar quack-default-program "guile"))
       (setq fill-column 79)
       (local-set-key "\e\C-l" 'goto-line)
-      (go-paredit)
-      (require 'quack)
-      (quack-install)))
+      (go-paredit)))
 
 
 ; skribilo (skribe)
