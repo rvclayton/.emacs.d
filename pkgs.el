@@ -38,9 +38,11 @@
   :config
     (require 'quack)
     (quack-install)
+    (setq quack-default-program "guile")
+    (setq quack-run-scheme-always-prompts-p nil)
     (when (string-match "\.rkt$" (buffer-file-name))
       (setq geiser-active-implementations '(racket))
-      (defvar quack-default-program "racket"))
+      (setq quack-default-program "racket"))
     (setq geiser-repl-startup-time 5000)
   )
 
