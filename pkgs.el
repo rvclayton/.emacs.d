@@ -64,6 +64,7 @@
 
 (use-package paredit
   :ensure t
+  :diminish paredit-mode
   :config
     (setq show-paren-delay 0)
     (show-paren-mode t)
