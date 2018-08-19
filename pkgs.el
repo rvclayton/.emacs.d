@@ -21,14 +21,6 @@
     (add-hook 'dart-mode-hook 'flycheck-mode)
   )
 
-(use-package ess
-  :ensure t
-  :mode "\\.(R\\|r)$"
-  :config
-    (setq-default ess-dialect "R")
-  )
-
-
 (use-package geiser
   :ensure t
   :mode "\\.(scm\\|rkt)$"
@@ -92,5 +84,5 @@
 
 
 (use-package yasnippet-snippets
-  :after yasnippet
-  :config (yasnippet-snippets-initialize))
+  :config
+    (yasnippet-snippets-initialize))
