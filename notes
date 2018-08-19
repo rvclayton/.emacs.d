@@ -7,3 +7,8 @@ use-package fields:
   :interpreter interpreters triggering this package.
 
 https://github.com/jwiegley/use-package
+
+--
+
+if use-package freaks out about not finding a package on emacs start-up, do M-x
+package-refresh-contents, exit emacs and try again.

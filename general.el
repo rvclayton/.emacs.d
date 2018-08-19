@@ -1,8 +1,10 @@
 ; antlr
 
   (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
-  (add-to-list 'auto-mode-alist '("\\.g4" . antlr-mode))
-
+  (add-to-list 'auto-mode-alist '("\\.[ga]4" . antlr-mode))
+  (add-hook 'antlr-mode-hook
+    (lambda ()
+      (load "antlr-mode-defs" nil t)))
 
 ; c
 
@@ -148,6 +150,8 @@
        (c-set-offset 'func-decl-cont 0 nil)
        (c-set-offset 'statement-case-intro 2 nil)
 
+       (electric-pair-local-mode)
+       
        (load "java-mode-defs" nil t)
        (set-variable 'fill-column 79)
        (setq dabbrev-case-fold-search nil)
@@ -199,29 +203,9 @@
       (local-set-key "\M-c" 'compile)))
 
 
-; markdown
-
-     (autoload 'markdown-mode "markdown-mode"
-       "Major mode for editing Markdown files" t)
-     (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-
 ; msgs
 
   (add-to-list 'auto-mode-alist '("/var/log/messages" . auto-revert-tail-mode))
-
-
-; multiple cursors
-
-  ; clone from https://github.com/magnars/multiple-cursors.el.git
-
-  (when (require-or-print 'multiple-cursors)
-    (global-set-key (kbd "C-c mca") 'mc/mark-all-like-this)
-    (global-set-key (kbd "C-c mce") 'mc/edit-lines)
-    (global-set-key (kbd "C-c mcn") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-c mcp") 'mc/mark-previous-like-this))
 
 
 ; no web.
@@ -315,17 +299,11 @@
 
   (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
 
-  ; get quack.el from http://www.neilvandyke.org/quack/quack.el
-
   (add-hook 'scheme-mode-hook
     (lambda ()
-      (when (require-or-print 'quack)
-        (defvar quack-default-program "guile"))
       (setq fill-column 79)
       (local-set-key "\e\C-l" 'goto-line)
-      (go-paredit)
-      (require 'quack)
-      (quack-install)))
+      (go-paredit)))
 
 
 ; skribilo (skribe)
@@ -366,8 +344,9 @@
 	(local-set-key "\M-g" 'fill-region-and-align)
 	(load "par-align" t t)
 	(flyspell-mode do-flyspell-mode)
-      )
-  )
+	(when (boundp 'its-all-text!)
+	  (auto-fill-mode -1)
+	  (visual-line-mode))))
 
   (add-hook 'tex-mode-hook
     (lambda ()

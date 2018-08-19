@@ -20,7 +20,7 @@
     (and templates-and-pos (first templates-and-pos))))
 
 
-(setq default-cursor-color "gray")
+(setq default-cursor-color (frame-parameter nil 'cursor-color))
 (setq yasnippet-can-fire-cursor-color "green")
 
 (defun my/change-cursor-color-when-can-expand (&optional field)

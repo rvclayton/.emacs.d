@@ -13,6 +13,33 @@
   (put 'upcase-region 'disabled nil)
   (setq initial-scratch-message nil)
 
+
+  (defun copy-string ()
+
+   ; Copy the string containing point into the kill ring.  Strings can be
+   ; delimited by ' or ", the same at both ends.
+
+    (interactive)
+    
+    ; This code sucks.
+    ;  - doesn't match string delimiters, 'hi"
+    ;  - doesn't handle escaped delimiters within the string, 'isn\'t'
+    ;  - should generalize delimiters to the usual matched pairs, [hi]
+    
+    (save-excursion
+      (let (start)
+
+	(unless (re-search-backward "['\"]" nil nil)
+	  (error "Can't find the starting string delimiter"))
+	(forward-char 1)
+	(setq start (point))
+
+	(unless (re-search-forward "['\"]" nil nil)
+	  (error "Can't find the ending string delimiter"))
+	(forward-char -1)
+	(kill-ring-save start (point)))))
+
+
   (defun filter-non-directories (lst)
     (let ((drs '()))
       (mapc 
@@ -104,22 +131,6 @@
   (defconst emacs-major-version (genutl:emacs-major-version))
 
 
-; parens matching
-
-  (let ((w 'paredit))
-    (cond 
-
-      ((eq w 'paredit)
-        (setq show-paren-delay 0)
-        (show-paren-mode t)
-        (setq show-paren-style 'mixed)) ; also 'parenthesis or 'expression
-
-      ((eq w 'rainbow-delimiters)
-       (when (require 'rainbow-delimiters nil 'noerror) 
-	 (mapc (lambda (m) (add-hook m 'rainbow-delimiters-mode))
-	      '(scheme-mode-hook java-mode-hook))))))
-
-
 ; uniqify buffer names
 
   (require 'uniquify)
@@ -208,6 +219,10 @@
     (local-set-key "\C-cprr" 'paredit-forward-slurp-sexp)
     (local-set-key "\C-cprl" 'paredit-forward-barf-sexp)
     (local-set-key "\C-cplr" 'paredit-backward-barf-sexp)
+    (local-set-key "\C-cmus" 'paredit-forward-up)
+    (local-set-key "\C-cmue" 'paredit-backward-up)
+    (local-set-key "\C-cmds" 'paredit-backward-down)
+    (local-set-key "\C-cmde" 'paredit-forward-down)
     (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
    (global-set-key "\e\e" nil)
@@ -256,12 +271,6 @@
   (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
 
-; ace jump everywhere.
-
-  (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
-  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-
 ; make label text visibile on dark (black) backgrounds.
 
   ; This may be a bad thing to do because there's only supposed to be one of
@@ -294,17 +303,7 @@
   (cond
     ((= emacs-major-version 24)
 
-      ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
-      ; at www.lunaryorn.com
-
-      ; ("marmalade" . "http://marmalade-repo.org/packages/")
-      ; replaced by melpa-stable
-
       (require-or-print 'package)
-      (setq package-enable-at-startup nil)
-      (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	    '(("melpa-stable" . "http://stable.melpa.org/packages/")
-	      ("elpa" . "http://elpa.gnu.org/packages/")))
 
       (package-initialize)
 
@@ -314,3 +313,13 @@
 	(package-refresh-contents)
 	(package-install 'use-package))))
 
+  ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
+  ; at www.lunaryorn.com
+
+  (setq package-enable-at-startup nil)
+
+  ; ("marmalade" . "http://marmalade-repo.org/packages/")
+  ; replaced by melpa-stable
+
+  (mapc (lambda (p) (add-to-list 'package-archives p)) 
+	'(("melpa-stable" . "http://stable.melpa.org/packages/")))

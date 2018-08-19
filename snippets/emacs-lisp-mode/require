@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: req
+# key: rqr
+# --
+(require '$0)
