@@ -83,5 +83,5 @@
 
 
 (use-package yasnippet-snippets
-  :after yasnippet
-  :config (yasnippet-snippets-initialize))
+  :config
+    (yasnippet-snippets-initialize))
