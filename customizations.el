@@ -13,7 +13,7 @@
  '(initial-major-mode (quote text-mode))
  '(package-selected-packages
    (quote
-    (which-key use-package rainbow-delimiters paredit multiple-cursors markdown-mode magit haskell-mode google-this geiser ess dart-mode clojure-snippets clojure-quick-repls clojure-mode-extra-font-locking clojure-cheatsheet beacon ace-window)))
+    (yasnippet which-key use-package rainbow-delimiters paredit multiple-cursors markdown-mode magit haskell-mode google-this geiser ess dart-mode clojure-snippets clojure-quick-repls clojure-mode-extra-font-locking clojure-cheatsheet beacon ace-window)))
  '(quack-programs
    (quote
     ("run-geiser" "mzscheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi")))
