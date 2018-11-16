@@ -21,14 +21,6 @@
     (add-hook 'dart-mode-hook 'flycheck-mode)
   )
 
-(use-package ess
-  :ensure t
-  :mode "\\.(R\\|r)$"
-  :config
-    (setq-default ess-dialect "R")
-  )
-
-
 (use-package geiser
   :ensure t
   :mode "\\.(scm\\|rkt)$"
@@ -36,7 +28,6 @@
     (when (string-match "\.rkt$" (buffer-file-name))
       (setq geiser-active-implementations '(racket)))
     (setq geiser-repl-startup-time 5000)
-    (require 'quack)
   )
 
 
@@ -44,6 +35,7 @@
   :ensure t
   :diminish google-this-mode
   :config
+    (setq google-this-browse-url-function 'eww-browse-url)
     (google-this-mode 1))
 
 
@@ -88,3 +80,8 @@
     (bind-key "\t" 'hippie-expand yas-minor-mode-map)
     (add-to-list 'yas-prompt-functions 'shk-yas/helm-prompt)
     (load "expansion-cursor-indicator"))
+
+
+(use-package yasnippet-snippets
+  :config
+    (yasnippet-snippets-initialize))

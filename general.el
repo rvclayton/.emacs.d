@@ -150,6 +150,8 @@
        (c-set-offset 'func-decl-cont 0 nil)
        (c-set-offset 'statement-case-intro 2 nil)
 
+       (electric-pair-local-mode)
+       
        (load "java-mode-defs" nil t)
        (set-variable 'fill-column 79)
        (setq dabbrev-case-fold-search nil)
@@ -204,19 +206,6 @@
 ; msgs
 
   (add-to-list 'auto-mode-alist '("/var/log/messages" . auto-revert-tail-mode))
-
-
-; multiple cursors
-
-  ; clone from https://github.com/magnars/multiple-cursors.el.git
-
-  (when (require-or-print 'multiple-cursors)
-    (global-set-key (kbd "C-c mca") 'mc/mark-all-like-this)
-    (global-set-key (kbd "C-c mce") 'mc/edit-lines)
-    (global-set-key (kbd "C-c mcn") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-c mcp") 'mc/mark-previous-like-this)
-    (global-unset-key (kbd "M-<down-mouse-1>"))
-    (global-set-key (kbd "M-<down-mouse-1>") 'mc/add-cursor-on-click))
 
 
 ; no web.
@@ -310,17 +299,11 @@
 
   (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
 
-  ; get quack.el from http://www.neilvandyke.org/quack/quack.el
-
   (add-hook 'scheme-mode-hook
     (lambda ()
-      (when (require-or-print 'quack)
-        (defvar quack-default-program "guile"))
       (setq fill-column 79)
       (local-set-key "\e\C-l" 'goto-line)
-      (go-paredit)
-      (require 'quack)
-      (quack-install)))
+      (go-paredit)))
 
 
 ; skribilo (skribe)

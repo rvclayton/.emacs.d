@@ -219,6 +219,10 @@
     (local-set-key "\C-cprr" 'paredit-forward-slurp-sexp)
     (local-set-key "\C-cprl" 'paredit-forward-barf-sexp)
     (local-set-key "\C-cplr" 'paredit-backward-barf-sexp)
+    (local-set-key "\C-cmus" 'paredit-forward-up)
+    (local-set-key "\C-cmue" 'paredit-backward-up)
+    (local-set-key "\C-cmds" 'paredit-backward-down)
+    (local-set-key "\C-cmde" 'paredit-forward-down)
     (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
    (global-set-key "\e\e" nil)
@@ -318,5 +322,4 @@
   ; replaced by melpa-stable
 
   (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	'(("melpa-stable" . "http://stable.melpa.org/packages/")
-	  ("elpa" . "http://elpa.gnu.org/packages/")))
+	'(("melpa-stable" . "http://stable.melpa.org/packages/")))
