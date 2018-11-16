@@ -103,12 +103,12 @@
   (add-hook 'haskell-mode-hook
     (lambda() "Haskell mode hacks"
       (load "inf-haskell")
-      (load-library "haskell-toys")
+      ; (load-library "haskell-toys")
       (define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
       (define-key haskell-mode-map "\C-c\C-g" 'goto-line)
       (turn-on-font-lock)
       (turn-on-haskell-doc-mode)
-      (turn-on-haskell-simple-indent)
+      ; (turn-on-haskell-simple-indent)
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
 	   (concat "ghc " (file-name-nondirectory buffer-file-name) 
