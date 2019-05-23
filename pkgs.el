@@ -26,6 +26,8 @@
 	(when (file-exists-p f)
 	  (autoload 'coq-mode f "Major mode for the coq proof assistant." t)))
       (setq proof-splash-enable nil)
+      (when (fboundp 'company-coq-initialize)
+	(add-hook 'coq-mode-hook #'company-coq-initialize))
       (add-hook 'coq-mode-hook
         (lambda ()
 	  (define-key coq-mode-map "\M-\C-n" #'proof-assert-next-command-interactive)))
@@ -108,5 +110,6 @@
 
 
 (use-package yasnippet-snippets
+  :ensure t
   :config
     (yasnippet-snippets-initialize))
