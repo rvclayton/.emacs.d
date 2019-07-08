@@ -9,9 +9,7 @@
 
   (fset 'f (lambda (f) (concat "~rclayton/.emacs.d/" f ".el")))
   
-  (setq custom-file  (f "customizations"))
-
-  (load-file custom-file)
+  (load-file (f "customizations"))
   (load-file (f "common"))
   (load-file (f "general")))
 
