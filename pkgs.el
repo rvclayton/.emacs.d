@@ -1,9 +1,11 @@
 (require 'use-package)
 
+
 (use-package ace-window
   :ensure t
   :config
     (global-set-key (kbd "C-x o") 'ace-window))
+
 
 (use-package avy
   :ensure t
@@ -13,6 +15,29 @@
 	 ("M-C-j w" . avy-goto-word-1)
 	 ("M-C-j l" . avy-goto-line)))
 
+
+(when (executable-find "coqc")
+  (use-package proof-general
+    :ensure t
+    :mode ("\\.\\(v\\|coq\\)\\'" . coq-mode)
+
+    :init
+      (let ((f "~/.emacs.d/elpa/proof-general-4.4/generic/proof-site.elc"))
+	(when (file-exists-p f)
+	  (autoload 'coq-mode f "Major mode for the coq proof assistant." t)))
+      (setq proof-splash-enable nil)
+      (when (fboundp 'company-coq-initialize)
+	(add-hook 'coq-mode-hook #'company-coq-initialize))
+      (add-hook 'coq-mode-hook
+        (lambda ()
+	  (define-key coq-mode-map "\M-\C-n" #'proof-assert-next-command-interactive)))
+
+    :config
+      (setq proof-script-fly-past-comments t)
+      (setq proof-three-window-mode-policy 'hybrid)
+    ))
+
+
 (use-package dart-mode
   :ensure t
   :mode "\\.da?rt$"
@@ -20,6 +45,7 @@
     (setq dart-enable-analysis-server t)
     (add-hook 'dart-mode-hook 'flycheck-mode)
   )
+
 
 (use-package geiser
   :ensure t
@@ -84,5 +110,6 @@
 
 
 (use-package yasnippet-snippets
+  :ensure t
   :config
     (yasnippet-snippets-initialize))
