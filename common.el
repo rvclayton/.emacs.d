@@ -91,6 +91,7 @@
          '("~/lib/emacs/info ~/local/info" "/usr/local/info"  
 	   "/usr/local/share/info" "/export/opt/TeX/info"))))
 
+   (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
    (setq-default initial-major-mode 'text-mode)
    (setq-default major-mode 'text-mode)
    (put 'eval-expression 'disabled nil)
