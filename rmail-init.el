@@ -72,3 +72,9 @@
 		    (h-lns (window-height)))
 		(when (< h-min h-lns)
 		  (enlarge-window (- h-min h-lns)))))))))
+
+(defun rmail:reformat-emacs-news ()
+
+  (interactive)
+  (genutl:replace-regexp-matches "^\\+ " "\n+ " (point-min) (point-max))
+  (genutl:replace-regexp-matches "^\\* " "\n* " (point-min) (point-max)))
