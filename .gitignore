@@ -9,6 +9,7 @@ auto-save-list
 backups
 customizations.el
 elpa
+eshell
 ido.last
 javadoc-cache
 network-security.data
