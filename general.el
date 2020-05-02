@@ -69,6 +69,12 @@
       (kill-local-variable 'after-save-hook)))
 
 
+; coq
+
+  (when (executable-find "coqc")
+    (load "~/.emacs.d/elpa/proof-general-4.4/generic/proof-site"))
+
+
 ; dart
 
   (autoload 'dart-mode "dart-mode" "Major mode for dart code." t)
