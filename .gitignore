@@ -6,6 +6,7 @@
 abbrev_defs
 ac-comphist.dat
 auto-save-list
+backups
 customizations.el
 elpa
 ido.last
