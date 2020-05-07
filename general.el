@@ -1,6 +1,6 @@
-; antlr
+					; antlr
 
-  (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
+(autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
   (add-to-list 'auto-mode-alist '("\\.[ga]4" . antlr-mode))
   (add-hook 'antlr-mode-hook
     (lambda ()
@@ -246,10 +246,10 @@
 
 ; packages
 
-  (when (> emacs-major-version 23)
-    ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
-    ; how to compile it).
-    (load "~rclayton/.emacs.d/pkgs.el"))
+  ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
+  ; how to compile it).
+
+  (load "~rclayton/.emacs.d/pkgs.el")
 
 
 ; processing
