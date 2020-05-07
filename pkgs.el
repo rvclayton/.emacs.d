@@ -1,6 +1,3 @@
-(require 'use-package)
-
-
 (use-package ace-window
   :ensure t
   :config
@@ -92,8 +89,11 @@
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
-    (which-key-mode))
+    (which-key-mode)
+    (which-key-setup-side-window-bottom)
+    (setq which-key-idle-delay 1))
 
 
 (use-package yasnippet
