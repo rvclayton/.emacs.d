@@ -297,30 +297,3 @@
        (((class color) (background light))
 	(:foreground "grey75")))
      "Face used to dim noise characters.")
-
-
-; package management
-
-  (cond
-    ((= emacs-major-version 24)
-
-      (require-or-print 'package)
-
-      (package-initialize)
-
-      ; Bootstrap use-package
-
-      (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))))
-
-  ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
-  ; at www.lunaryorn.com
-
-  (setq package-enable-at-startup nil)
-
-  ; ("marmalade" . "http://marmalade-repo.org/packages/")
-  ; replaced by melpa-stable
-
-  (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	'(("melpa-stable" . "http://stable.melpa.org/packages/")))
