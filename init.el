@@ -12,11 +12,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(let (f)
-
-  (fset 'f (lambda (f) (concat "~rclayton/.emacs.d/" f ".el")))
-  
-  (load-file (f "customizations"))
-  (load-file (f "common"))
-  (load-file (f "general")))
+(mapc 
+  (lambda (f)
+    (let ((fn (concat "~rclayton/.emacs.d/" f ".el")))
+      (when (file-exists-p fn)
+	(load-file fn))))
+ '("customizations" "common" "general"))
 
