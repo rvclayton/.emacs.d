@@ -17,5 +17,5 @@
     (let ((fn (concat "~rclayton/.emacs.d/" f ".el")))
       (when (file-exists-p fn)
 	(load-file fn))))
- '("customizations" "common" "general"))
+  '("customizations" "common" "general"))
 
