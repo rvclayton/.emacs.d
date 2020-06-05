@@ -50,7 +50,7 @@
   :config
     (when (string-match "\.rkt$" (buffer-file-name))
       (setq geiser-active-implementations '(racket)))
-    (setq geiser-repl-startup-time 5000)
+    (setq geiser-repl-startup-time 10000)
   )
 
 
