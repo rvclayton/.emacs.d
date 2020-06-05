@@ -19,9 +19,6 @@
     :mode ("\\.\\(v\\|coq\\)\\'" . coq-mode)
 
     :init
-      (let ((f "~/.emacs.d/elpa/proof-general-4.4/generic/proof-site.elc"))
-	(when (file-exists-p f)
-	  (autoload 'coq-mode f "Major mode for the coq proof assistant." t)))
       (setq proof-splash-enable nil)
       (when (fboundp 'company-coq-initialize)
 	(add-hook 'coq-mode-hook #'company-coq-initialize))
@@ -31,8 +28,10 @@
 
     :config
       (setq proof-script-fly-past-comments t)
-      (setq proof-three-window-mode-policy 'hybrid)
-    ))
+      (setq proof-three-window-mode-policy 'hybrid))
+
+  (autoload 'coq-mode "~/.emacs.d/elpa/proof-general-4.4/generic/proof-site.elc"
+    "Major mode for the coq proof assistant." t))
 
 
 (use-package dart-mode
