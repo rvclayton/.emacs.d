@@ -5,7 +5,7 @@
 	("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize)
-(package-refresh-contents)
+; (package-refresh-contents)  ; do this by hand when needed.
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
