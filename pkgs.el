@@ -1,9 +1,8 @@
-(require 'use-package)
-
 (use-package ace-window
   :ensure t
   :config
     (global-set-key (kbd "C-x o") 'ace-window))
+
 
 (use-package avy
   :ensure t
@@ -13,6 +12,28 @@
 	 ("M-C-j w" . avy-goto-word-1)
 	 ("M-C-j l" . avy-goto-line)))
 
+
+(when (executable-find "coqc")
+  (use-package proof-general
+    :ensure t
+    :mode ("\\.\\(v\\|coq\\)\\'" . coq-mode)
+
+    :init
+      (setq proof-splash-enable nil)
+      (when (fboundp 'company-coq-initialize)
+	(add-hook 'coq-mode-hook #'company-coq-initialize))
+      (add-hook 'coq-mode-hook
+        (lambda ()
+	  (define-key coq-mode-map "\M-\C-n" #'proof-assert-next-command-interactive)))
+
+    :config
+      (setq proof-script-fly-past-comments t)
+      (setq proof-three-window-mode-policy 'hybrid))
+
+  (autoload 'coq-mode "~/.emacs.d/elpa/proof-general-4.4/generic/proof-site.elc"
+    "Major mode for the coq proof assistant." t))
+
+
 (use-package dart-mode
   :ensure t
   :mode "\\.da?rt$"
@@ -21,13 +42,14 @@
     (add-hook 'dart-mode-hook 'flycheck-mode)
   )
 
+
 (use-package geiser
   :ensure t
   :mode "\\.(scm\\|rkt)$"
   :config
     (when (string-match "\.rkt$" (buffer-file-name))
       (setq geiser-active-implementations '(racket)))
-    (setq geiser-repl-startup-time 5000)
+    (setq geiser-repl-startup-time 10000)
   )
 
 
@@ -43,7 +65,8 @@
   :ensure t
   :config
     (ido-mode t)
-    (setq ido-enable-flex-matching t))
+    (setq ido-enable-flex-matching t)
+    (setq ido-everywhere t))
 
 
 (use-package markdown-mode
@@ -56,6 +79,7 @@
 
 (use-package paredit
   :ensure t
+  :diminish paredit-mode
   :config
     (setq show-paren-delay 0)
     (show-paren-mode t)
@@ -64,8 +88,11 @@
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
-    (which-key-mode))
+    (which-key-mode)
+    (which-key-setup-side-window-bottom)
+    (setq which-key-idle-delay 1))
 
 
 (use-package yasnippet
@@ -83,5 +110,6 @@
 
 
 (use-package yasnippet-snippets
+  :ensure t
   :config
     (yasnippet-snippets-initialize))

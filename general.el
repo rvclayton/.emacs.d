@@ -1,6 +1,6 @@
-; antlr
+					; antlr
 
-  (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
+(autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
   (add-to-list 'auto-mode-alist '("\\.[ga]4" . antlr-mode))
   (add-hook 'antlr-mode-hook
     (lambda ()
@@ -240,10 +240,10 @@
 
 ; packages
 
-  (when (> emacs-major-version 23)
-    ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
-    ; how to compile it).
-    (load "~rclayton/.emacs.d/pkgs.el"))
+  ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
+  ; how to compile it).
+
+  (load "~rclayton/.emacs.d/pkgs.el")
 
 
 ; processing
@@ -402,27 +402,6 @@
        [simple-query "url for no specified query phrase"
 		     "url prefix for specified query phrase" 
 		     "url suffix for specified query phrase"])
-
-      ("os public" .
-       [simple-query
-	  "http://bluehawk.monmouth.edu/rclayton/web-pages/f04-438-505/505-syl.html"
-	  "http://bluehawk.monmouth.edu/rclayton/web-pages/f04-438-505/" 
-	  ".html"])
-
-      ("os local" .
-       [simple-query
-	  "file:/export/home/uf/rclayton/public-html/f04-438-505/505-syl.html"
-	  "file:/export/home/uf/rclayton/public-html/f04-438-505/" 
-	  ".html"])
-
-      ("C-C++ User's Journal" .
-       [simple-query "www.cuj.com"
-		     "www.cuj.com/articles/search/search.cgi?q=" ""])
-
-      ("freshmeat" .
-       [simple-query "freshmeat.net"
-		     "freshmeat.net/search/?q="
-		     "&section=projects"])
 
       ("google" .
        [simple-query "http://www.google.com"
