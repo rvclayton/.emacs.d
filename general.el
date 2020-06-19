@@ -297,7 +297,7 @@
 
 ; scheme
 
-  (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
+  (add-to-list 'auto-mode-alist '("\\.\\(scm\\(awk\\|pic\\)?\\|rkt\\|skr\\)$" . scheme-mode))
 
   (add-hook 'scheme-mode-hook
     (lambda ()
