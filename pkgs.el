@@ -77,6 +77,14 @@
   )
 
 
+(use-package multiple-cursors
+  :bind
+    ("C->" . mc/mark-next-like-this)
+    ("C-<" . mc/unmark-next-like-this)
+    ("C-S-c C-S-c" . 'mc/edit-lines)   ; mark all in region
+  )
+
+
 (use-package paredit
   :ensure t
   :diminish paredit-mode
