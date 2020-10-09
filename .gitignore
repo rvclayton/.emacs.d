@@ -11,6 +11,7 @@ customizations.el
 elpa
 eshell
 ido.last
+init.el
 javadoc-cache
 network-security.data
 old-*
