@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ; An init.el that emacs doesn't modify to make it easier to keep under
 ; source-code control.  init.el should require or load this (make sure
 ; load-path is set apropriately).
