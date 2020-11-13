@@ -1,6 +1,6 @@
-; antlr
+					; antlr
 
-  (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
+(autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
   (add-to-list 'auto-mode-alist '("\\.[ga]4" . antlr-mode))
   (add-hook 'antlr-mode-hook
     (lambda ()
@@ -103,12 +103,12 @@
   (add-hook 'haskell-mode-hook
     (lambda() "Haskell mode hacks"
       (load "inf-haskell")
-      (load-library "haskell-toys")
+      ; (load-library "haskell-toys")
       (define-key haskell-mode-map "\C-c\C-l" 'inferior-haskell-load-file)
       (define-key haskell-mode-map "\C-c\C-g" 'goto-line)
       (turn-on-font-lock)
       (turn-on-haskell-doc-mode)
-      (turn-on-haskell-simple-indent)
+      ; (turn-on-haskell-simple-indent)
       (local-set-key "\M-c" 'compile)
       (set (make-local-variable 'compile-command)
 	   (concat "ghc " (file-name-nondirectory buffer-file-name) 
@@ -240,10 +240,10 @@
 
 ; packages
 
-  (when (> emacs-major-version 23)
-    ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
-    ; how to compile it).
-    (load "~rclayton/.emacs.d/pkgs.el"))
+  ; Because pkgs.el calls use-package, it can't be compiled (or I don't know
+  ; how to compile it).
+
+  (load "~rclayton/.emacs.d/pkgs.el")
 
 
 ; processing
@@ -297,19 +297,13 @@
 
 ; scheme
 
-  (add-to-list 'auto-mode-alist '("\\.(scm(awk\\|pic)?\\|rkt\\|skr)$" . scheme-mode))
-
-  ; get quack.el from http://www.neilvandyke.org/quack/quack.el
+  (add-to-list 'auto-mode-alist '("\\.\\(scm\\(awk\\|pic\\)?\\|rkt\\|skr\\)$" . scheme-mode))
 
   (add-hook 'scheme-mode-hook
     (lambda ()
-      (when (require-or-print 'quack)
-        (defvar quack-default-program "guile"))
       (setq fill-column 79)
       (local-set-key "\e\C-l" 'goto-line)
-      (go-paredit)
-      (require 'quack)
-      (quack-install)))
+      (go-paredit)))
 
 
 ; skribilo (skribe)
@@ -408,27 +402,6 @@
        [simple-query "url for no specified query phrase"
 		     "url prefix for specified query phrase" 
 		     "url suffix for specified query phrase"])
-
-      ("os public" .
-       [simple-query
-	  "http://bluehawk.monmouth.edu/rclayton/web-pages/f04-438-505/505-syl.html"
-	  "http://bluehawk.monmouth.edu/rclayton/web-pages/f04-438-505/" 
-	  ".html"])
-
-      ("os local" .
-       [simple-query
-	  "file:/export/home/uf/rclayton/public-html/f04-438-505/505-syl.html"
-	  "file:/export/home/uf/rclayton/public-html/f04-438-505/" 
-	  ".html"])
-
-      ("C-C++ User's Journal" .
-       [simple-query "www.cuj.com"
-		     "www.cuj.com/articles/search/search.cgi?q=" ""])
-
-      ("freshmeat" .
-       [simple-query "freshmeat.net"
-		     "freshmeat.net/search/?q="
-		     "&section=projects"])
 
       ("google" .
        [simple-query "http://www.google.com"

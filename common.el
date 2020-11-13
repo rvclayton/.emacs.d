@@ -91,6 +91,7 @@
          '("~/lib/emacs/info ~/local/info" "/usr/local/info"  
 	   "/usr/local/share/info" "/export/opt/TeX/info"))))
 
+   (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
    (setq-default initial-major-mode 'text-mode)
    (setq-default major-mode 'text-mode)
    (put 'eval-expression 'disabled nil)
@@ -219,6 +220,10 @@
     (local-set-key "\C-cprr" 'paredit-forward-slurp-sexp)
     (local-set-key "\C-cprl" 'paredit-forward-barf-sexp)
     (local-set-key "\C-cplr" 'paredit-backward-barf-sexp)
+    (local-set-key "\C-cmus" 'paredit-forward-up)
+    (local-set-key "\C-cmue" 'paredit-backward-up)
+    (local-set-key "\C-cmds" 'paredit-backward-down)
+    (local-set-key "\C-cmde" 'paredit-forward-down)
     (font-lock-add-keywords nil '(("(\\|)" . 'noise-chars-face))))
 
    (global-set-key "\e\e" nil)
@@ -292,33 +297,3 @@
        (((class color) (background light))
 	(:foreground "grey75")))
      "Face used to dim noise characters.")
-
-
-; package management
-
-  (cond
-    ((= emacs-major-version 24)
-
-      (require-or-print 'package)
-
-      (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-      
-      (package-initialize)
-
-      ; Bootstrap use-package
-
-      (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))))
-
-  ; details from 2015/01/06/my-emacs-configuration-with-use-package.html
-  ; at www.lunaryorn.com
-
-  (setq package-enable-at-startup nil)
-
-  ; ("marmalade" . "http://marmalade-repo.org/packages/")
-  ; replaced by melpa-stable
-
-  (mapc (lambda (p) (add-to-list 'package-archives p)) 
-	'(("melpa-stable" . "http://stable.melpa.org/packages/")
-	  ("elpa" . "http://elpa.gnu.org/packages/")))
