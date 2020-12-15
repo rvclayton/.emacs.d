@@ -247,7 +247,8 @@
     (defvar do-flyspell-mode -1) ; no aspell, no flyspell mode.
     (defvar do-flyspell-mode 1)
     (defvar ispell-program-name "aspell")
-    (defvar ispell-extra-args   '("--sug-mode=ultra")))
+    (defvar ispell-extra-args   '("--sug-mode=ultra"))
+    (defvar ispell-list-command " --list"))
 
 
 ; Rename the buffer and the file at the same time.
