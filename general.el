@@ -1,4 +1,4 @@
-					; antlr
+; antlr
 
 (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
   (add-to-list 'auto-mode-alist '("\\.[ga]4" . antlr-mode))
@@ -425,13 +425,3 @@
 ; w3m
 
   (require-or-print 'w3m)
-
-
-; yaml
-
-  (when (require-or-print 'yaml-mode)
-    (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-    (add-hook 'yaml-mode-hook
-     '(lambda ()
-        (define-key yaml-mode-map "\C-m" 'newline-and-indent)))) 
-
