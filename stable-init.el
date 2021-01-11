@@ -6,15 +6,17 @@
 
 (require 'package)
 
+(setq package-enable-at-startup nil)
 (setq package-archives
       '(("gnu"          . "https://elpa.gnu.org/packages/")
 	("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (when (< emacs-major-version 27)
   (package-initialize))
-; (package-refresh-contents)  ; do this by hand when needed.
+; (package-refresh-contents)  ; do this by hand when needed, it's slow.
 
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t)
