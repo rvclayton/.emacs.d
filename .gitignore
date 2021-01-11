@@ -1,6 +1,7 @@
 #~
 *.elc
 *~
+.last-package-update-day
 .mc-lists.el
 .org-id-locations
 abbrev_defs
