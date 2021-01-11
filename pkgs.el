@@ -4,6 +4,15 @@
     (global-set-key (kbd "C-x o") 'ace-window))
 
 
+(use-package auto-package-update
+  :defer nil
+  :ensure t
+  :config
+    (setq auto-package-update-delete-old-versions t)
+    (setq auto-package-update-hide-results t)
+    (auto-package-update-maybe))
+
+
 (use-package avy
   :ensure t
   :init
