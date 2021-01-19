@@ -1,6 +1,7 @@
 #~
 *.elc
 *~
+.cache
 .last-package-update-day
 .mc-lists.el
 .org-id-locations
