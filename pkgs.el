@@ -22,6 +22,15 @@
 	 ("M-C-j l" . avy-goto-line)))
 
 
+(use-package browse-kill-ring
+  :ensure t
+  :init
+    (global-set-key "\C-cy" 'browse-kill-ring)
+  :config
+    (setq browse-kill-ring-highlight-inserted-item t)
+    (setq browse-kill-ring-highlight-current-entry t))
+
+
 (when (executable-find "coqc")
   (use-package proof-general
     :ensure t
