@@ -1,3 +1,8 @@
+(use-package diminish
+  :ensure t
+  :commands (diminish))
+
+
 (use-package ace-window
   :ensure t
   :config
