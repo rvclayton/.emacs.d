@@ -243,12 +243,17 @@
   ; sometimes flyspell freaks out, and it should be turned off (set
   ; non-positive) until it's fixed.
 
-  (if (not (executable-find "aspell"))
-    (defvar do-flyspell-mode -1) ; no aspell, no flyspell mode.
-    (defvar do-flyspell-mode 1)
-    (defvar ispell-program-name "aspell")
-    (defvar ispell-extra-args   '("--sug-mode=ultra"))
-    (defvar ispell-list-command " --list"))
+  
+  (defvar do-flyspell-mode -1)
+  (cond
+    ((executable-find "aspell")
+       (setq do-flyspell-mode 1)
+       (defvar ispell-program-name "aspell")
+       (defvar ispell-extra-args   '("--sug-mode=ultra"))
+       (defvar ispell-list-command " --list"))
+    ((executable-find "hunspell")
+       (setq do-flyspell-mode 1)
+       (defvar ispell-program-name "hunspell")))
 
 
 ; Rename the buffer and the file at the same time.
