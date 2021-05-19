@@ -300,8 +300,8 @@
 
 ; stories
 
-  (autoload 'story-previous "story-clean")
-  (add-to-list 'auto-mode-alist '("\\`s[0-9]+\\'" . story-previous))
+  (autoload 'story-mode "story-clean")
+  (add-to-list 'auto-mode-alist '("s[0-9]+\\'" . story-mode))
 
 
 ; tcl
