@@ -1,6 +1,6 @@
 ; antlr
 
-(autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
+  (autoload 'antlr-mode "antlr-mode" "Major mode for antlr code." t)
   (add-to-list 'auto-mode-alist '("\\.[ga]4" . antlr-mode))
   (add-hook 'antlr-mode-hook
     (lambda ()
@@ -273,14 +273,6 @@
       )
 
   
-; pyret
-
-  (ignore-errors
-    (require 'pyret)
-    (add-to-list 'auto-mode-alist '("\\.arr$" . pyret-mode))
-    (add-to-list 'file-coding-system-alist '("\\.arr\\'" . utf-8)))
-
-
 ; Python
 
   (add-hook 'python-mode-hook
@@ -292,12 +284,12 @@
 
   (autoload 'python "python-mode" "" t)
   (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-  (add-to-list 'auto-mode-alist '("\\.pypic$" . python-mode))
 
 
 ; scheme
 
-  (add-to-list 'auto-mode-alist '("\\.\\(scm\\(awk\\|pic\\)?\\|rkt\\|skr\\)$" . scheme-mode))
+  (add-to-list
+    'auto-mode-alist '("\\.\\(scm\\|rkt\\)\\'" . scheme-mode))
 
   (add-hook 'scheme-mode-hook
     (lambda ()
@@ -306,15 +298,15 @@
       (go-paredit)))
 
 
-; skribilo (skribe)
+; stories
 
-  (autoload 'skribe-mode "skribe" "minor mode for skribilo code." t)
-  (add-to-list 'auto-mode-alist '("\\.skr$" . skribe-mode))
+  (autoload 'story-previous "story-clean")
+  (add-to-list 'auto-mode-alist '("\\`s[0-9]+\\'" . story-previous))
 
 
 ; tcl
 
-  (add-to-list 'auto-mode-alist '("\\.tk$" . tcl-mode))
+  (add-to-list 'auto-mode-alist '("\\.tk\\'" . tcl-mode))
 
   (add-hook 'tcl-mode-hook
     (lambda ()
@@ -386,7 +378,7 @@
 
 ; version control
 
-    (setq vc-handled-backends '(RCS GIT))
+  (setq vc-handled-backends '(RCS GIT))
 
 
 ; web jump
