@@ -7,9 +7,13 @@
 (require 'package)
 
 (setq package-enable-at-startup nil)
-(setq package-archives
-      '(("gnu"          . "https://elpa.gnu.org/packages/")
-	("melpa-stable" . "https://stable.melpa.org/packages/")))
+
+; the working geiser is in melpa-unstable
+
+(mapc (lambda (a) (add-to-list 'package-archives a 'append))
+      '(("gnu"            . "https://elpa.gnu.org/packages/")
+	("melpa-stable"   . "https://stable.melpa.org/packages/")
+	("melpa-unstable" . "http://melpa.org/packages/")))
 
 (when (< emacs-major-version 27)
   (package-initialize))
