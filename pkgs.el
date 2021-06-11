@@ -66,13 +66,12 @@
   )
 
 
-(use-package geiser
+; the value for geiser-repl-startup-time is for an elderly, slow machine.
+
+(use-package geiser-racket
   :ensure t
-  :mode "\\.(scm\\|rkt)$"
   :config
-    (when (string-match "\.rkt$" (buffer-file-name))
-      (setq geiser-active-implementations '(racket)))
-    (setq geiser-repl-startup-time 10000)
+    (setq geiser-repl-startup-time 15000)
   )
 
 
