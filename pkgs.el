@@ -121,6 +121,13 @@
     (setq show-paren-style 'mixed)) ; also 'parenthesis or 'expression
 
 
+(use-package tao-theme
+  :ensure t
+  :config
+    (when (display-graphic-p)
+      (load-theme 'tao-yin t)))
+
+
 (use-package which-key
   :ensure t
   :diminish which-key-mode
