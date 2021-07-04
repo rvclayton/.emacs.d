@@ -121,10 +121,11 @@
     (setq show-paren-style 'mixed)) ; also 'parenthesis or 'expression
 
 
-(use-package tao-theme
-  :ensure t
-  :config
-    (when (display-graphic-p)
+(when (display-graphic-p)
+  (use-package tao-theme
+    :ensure t
+    :config
+      (setq tao-theme-use-sepia nil)
       (load-theme 'tao-yin t)))
 
 
