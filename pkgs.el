@@ -9,6 +9,12 @@
     (global-set-key (kbd "C-x o") 'ace-window))
 
 
+(use-package almost-mono-themes
+  :ensure t
+  :config
+    (when (display-graphic-p)
+      (load-theme 'almost-mono-black t)))
+
 (use-package auto-package-update
   :defer nil
   :ensure t
@@ -121,11 +127,11 @@
     (setq show-paren-style 'mixed)) ; also 'parenthesis or 'expression
 
 
-(use-package tao-theme
-  :ensure t
-  :config
-    (when (display-graphic-p)
-      (load-theme 'tao-yin t)))
+;; (use-package tao-theme
+;;   :ensure t
+;;   :config
+;;     (when (display-graphic-p)
+;;       (load-theme 'tao-yin t)))
 
 
 (use-package which-key
